@@ -1,5 +1,4 @@
-
-         <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -15,27 +14,41 @@
             color: #333;
         }
 
-        #game-board {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 20px;
+        #field {
+            position: relative;
+            width: 400px;
+            height: 200px;
+            background-color: #8DB600;
+            margin: 20px auto;
         }
 
-        .card {
-            width: 100px;
-            height: 150px;
-            margin: 10px;
-            cursor: pointer;
-            background-color: #ddd;
-            border: 2px solid #333;
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        #ball {
+            position: absolute;
+            width: 30px;
+            height: 30px;
+            background-color: #FFFFFF;
+            border-radius: 50%;
+            top: 85px;
+            left: 185px;
         }
 
-        #output {
+        #goal {
+            position: absolute;
+            width: 10px;
+            height: 100px;
+            background-color: #FFFFFF;
+            top: 50px;
+        }
+
+        #goal-left {
+            left: 0;
+        }
+
+        #goal-right {
+            right: 0;
+        }
+
+        #score {
             font-size: 18px;
             margin-top: 20px;
             color: #333;
@@ -50,108 +63,59 @@
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const symbols = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
-            const totalPairs = 4; // Increase this value to make the game harder
-            const totalCards = totalPairs * 2;
-            let cards = [];
-            let flippedCards = [];
-            let matchedPairs = 0;
-            let attempts = 0;
+            let ball = document.getElementById("ball");
+            let goalLeft = document.getElementById("goal-left");
+            let goalRight = document.getElementById("goal-right");
+            let score = 0;
 
-            function generateCards() {
-                cards = [];
-                flippedCards = [];
-                matchedPairs = 0;
-                attempts = 0;
+            function moveBall() {
+                const direction = Math.random() < 0.5 ? -1 : 1;
+                const speed = Math.random() * 5 + 2;
 
-                for (let i = 0; i < totalPairs; i++) {
-                    const symbol = symbols[i];
-                    cards.push(symbol, symbol);
-                }
+                ball.style.transition = "none";
+                ball.style.left = "185px";
+                ball.style.top = "85px";
 
-                // Shuffle the cards
-                cards.sort(() => Math.random() - 0.5);
-
-                renderGame();
+                setTimeout(() => {
+                    ball.style.transition = `all ${speed}s linear`;
+                    ball.style.left = `${direction === 1 ? 370 : 0}px`;
+                    ball.style.top = `${Math.random() * 140}px`;
+                }, 10);
             }
 
-            function renderGame() {
-                const gameBoard = document.getElementById("game-board");
-                gameBoard.innerHTML = '';
+            function checkGoal() {
+                const ballLeft = parseInt(ball.style.left);
+                const ballTop = parseInt(ball.style.top);
 
-                for (let i = 0; i < totalCards; i++) {
-                    const card = document.createElement("div");
-                    card.classList.add("card");
-                    card.dataset.index = i;
-                    card.innerHTML = '<span class="hidden">?</span>';
-                    card.addEventListener("click", handleCardClick);
-                    gameBoard.appendChild(card);
+                if (ballLeft > 370 && ballTop > 50 && ballTop < 150) {
+                    score++;
+                    document.getElementById("score").innerText = `Score: ${score}`;
+                    moveBall();
                 }
             }
 
-            function handleCardClick(event) {
-                const clickedCard = event.target;
-                const index = clickedCard.dataset.index;
-
-                if (!flippedCards.includes(index) && flippedCards.length < 2) {
-                    flippedCards.push(index);
-                    showCardSymbol(clickedCard);
-
-                    if (flippedCards.length === 2) {
-                        setTimeout(checkMatch, 1000);
-                    }
-                }
-            }
-
-            function showCardSymbol(card) {
-                const index = card.dataset.index;
-                card.innerHTML = `<span>${cards[index]}</span>`;
-            }
-
-            function hideCardSymbol(card) {
-                card.innerHTML = '<span class="hidden">?</span>';
-            }
-
-            function checkMatch() {
-                const [index1, index2] = flippedCards;
-                const card1 = document.querySelector(`[data-index="${index1}"]`);
-                const card2 = document.querySelector(`[data-index="${index2}"]`);
-
-                attempts++;
-
-                if (cards[index1] === cards[index2]) {
-                    matchedPairs++;
-                    if (matchedPairs === totalPairs) {
-                        endGame(`Congratulations! You completed the game in ${attempts} attempts.`);
-                    } else {
-                        flippedCards = [];
-                    }
-                } else {
-                    hideCardSymbol(card1);
-                    hideCardSymbol(card2);
-                    flippedCards = [];
-                }
-            }
-
-            function endGame(message) {
-                document.getElementById("output").innerHTML = message;
-                document.getElementById("restartBtn").style.display = "block";
-            }
-
-            document.getElementById("restartBtn").addEventListener("click", function () {
-                document.getElementById("output").innerHTML = '';
-                document.getElementById("restartBtn").style.display = "none";
-                generateCards();
+            document.getElementById("goal-left").addEventListener("click", function () {
+                score = 0;
+                document.getElementById("score").innerText = "Score: 0";
+                moveBall();
             });
 
-            generateCards();
+            document.getElementById("goal-right").addEventListener("click", function () {
+                checkGoal();
+            });
         });
     </script>
 </head>
 <body>
-    <h1>Memory Matching Game</h1>
-    <div id="game-board"></div>
-    <div id="output"></div>
-    <button id="restartBtn" style="display: none;">Restart Game</button>
+    <h1>Football Game</h1>
+    <div id="field">
+        <div id="goal" id="goal-left"></div>
+        <div id="goal" id="goal-right"></div>
+        <div id="ball"></div>
+    </div>
+    <div id="score">Score: 0</div>
+    <button id="restartBtn">Restart Game</button>
 </body>
 </html>
+
+
