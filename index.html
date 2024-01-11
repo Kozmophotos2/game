@@ -32,18 +32,32 @@
             cursor: pointer;
             margin-top: 10px;
         }
+
+        #hangman {
+            margin-top: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const words = ["javascript", "programming", "web", "development", "openai", "gpt", "challenge"];
+            const words = ["javascript", "programming", "web", "development", "openai", "hangman", "challenge"];
             let secretWord;
             let displayWord;
-            let attempts;
+            let incorrectGuesses;
+            let hangmanParts;
 
             function startGame() {
                 secretWord = words[Math.floor(Math.random() * words.length)];
                 displayWord = "_".repeat(secretWord.length);
-                attempts = 0;
+                incorrectGuesses = 0;
+                hangmanParts = document.querySelectorAll('.hangman-part');
+
+                for (let i = 0; i < hangmanParts.length; i++) {
+                    hangmanParts[i].classList.add('hidden');
+                }
 
                 document.getElementById("output").innerHTML = `Guess the word: ${displayWord}`;
                 document.getElementById("inputBox").value = "";
@@ -61,14 +75,22 @@
                 document.getElementById("restartBtn").style.display = "block";
             }
 
+            function updateHangman() {
+                if (incorrectGuesses < hangmanParts.length) {
+                    hangmanParts[incorrectGuesses].classList.remove('hidden');
+                }
+
+                if (incorrectGuesses === hangmanParts.length - 1) {
+                    endGame(`Sorry, you've run out of attempts. The correct word was "${secretWord}".`);
+                }
+            }
+
             document.getElementById("submitBtn").addEventListener("click", function () {
                 const userGuess = document.getElementById("inputBox").value.toLowerCase();
 
                 if (!userGuess || userGuess.length !== 1 || !(/[a-z]/.test(userGuess))) {
                     document.getElementById("output").innerHTML = "Please enter a single letter.";
                 } else {
-                    attempts++;
-
                     if (secretWord.includes(userGuess)) {
                         // Update the display word with correctly guessed letters
                         for (let i = 0; i < secretWord.length; i++) {
@@ -79,15 +101,14 @@
 
                         // Check if the word is fully guessed
                         if (displayWord === secretWord) {
-                            endGame(`Congratulations! You guessed the word "${secretWord}" in ${attempts} attempts.`);
+                            endGame(`Congratulations! You guessed the word "${secretWord}" with ${incorrectGuesses} incorrect attempts.`);
                         } else {
                             updateDisplayWord();
                         }
                     } else {
-                        document.getElementById("output").innerHTML = `Incorrect! Attempts: ${attempts}`;
-                        if (attempts >= 6) {
-                            endGame(`Sorry, you've run out of attempts. The correct word was "${secretWord}".`);
-                        }
+                        incorrectGuesses++;
+                        updateHangman();
+                        document.getElementById("output").innerHTML = `Incorrect! Attempts left: ${hangmanParts.length - incorrectGuesses}`;
                     }
                 }
             });
@@ -99,14 +120,27 @@
     </script>
 </head>
 <body>
-    <h1>Word Guessing Game</h1>
+    <h1>Hangman Game</h1>
     <div id="output"></div>
     <input type="text" id="inputBox" placeholder="Enter a letter" maxlength="1" />
     <br>
     <button id="submitBtn">Submit Guess</button>
     <button id="restartBtn" style="display: none;">Restart Game</button>
+
+    <div id="hangman">
+        <div class="hangman-part hidden">H</div>
+        <div class="hangman-part hidden">A</div>
+        <div class="hangman-part hidden">N</div>
+        <div class="hangman-part hidden">G</div>
+        <div class="hangman-part hidden">M</div>
+        <div class="hangman-part hidden">A</div>
+        <div class="hangman-part hidden">N</div>
+    </div>
 </body>
 </html>
+
+
+     
 
 
 
