@@ -5,14 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             text-align: center;
             margin-top: 50px;
+        }
+
+        h1 {
+            color: #333;
         }
 
         #output {
             font-size: 18px;
             margin-bottom: 10px;
+            color: #333;
         }
 
         #inputBox {
@@ -21,39 +26,60 @@
             padding: 5px;
         }
 
-        #submitBtn {
+        #submitBtn, #restartBtn {
             font-size: 16px;
             padding: 5px 10px;
             cursor: pointer;
+            margin-top: 10px;
         }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const secretNumber = Math.floor(Math.random() * 100) + 1;
-            let attempts = 0;
+            let secretNumber;
+            let attempts;
+            let score;
 
-            const output = document.getElementById("output");
-            const inputBox = document.getElementById("inputBox");
-            const submitBtn = document.getElementById("submitBtn");
+            function startGame() {
+                secretNumber = Math.floor(Math.random() * 100) + 1;
+                attempts = 0;
+                score = 100;
 
-            submitBtn.addEventListener("click", function () {
-                const userGuess = parseInt(inputBox.value);
+                document.getElementById("output").innerHTML = "";
+                document.getElementById("inputBox").value = "";
+                document.getElementById("submitBtn").disabled = false;
+                document.getElementById("restartBtn").style.display = "none";
+            }
+
+            function endGame(message) {
+                document.getElementById("output").innerHTML = message;
+                document.getElementById("submitBtn").disabled = true;
+                document.getElementById("restartBtn").style.display = "block";
+            }
+
+            document.getElementById("submitBtn").addEventListener("click", function () {
+                const userGuess = parseInt(document.getElementById("inputBox").value);
 
                 if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
-                    output.innerHTML = "Please enter a valid number between 1 and 100.";
+                    document.getElementById("output").innerHTML = "Please enter a valid number between 1 and 100.";
                 } else {
                     attempts++;
 
                     if (userGuess === secretNumber) {
-                        output.innerHTML = `Congratulations! You guessed the number ${secretNumber} in ${attempts} attempts.`;
-                        inputBox.disabled = true;
-                        submitBtn.disabled = true;
+                        endGame(`Congratulations! You guessed the number ${secretNumber} in ${attempts} attempts with a score of ${score}.`);
                     } else {
                         const hint = userGuess < secretNumber ? "higher" : "lower";
-                        output.innerHTML = `Incorrect! Try a ${hint} number. Attempts: ${attempts}`;
+                        document.getElementById("output").innerHTML = `Incorrect! Try a ${hint} number. Attempts: ${attempts}`;
+                        score -= 10; // Penalty for each incorrect guess
+                        if (score <= 0) {
+                            endGame(`Sorry, you've run out of attempts. The correct number was ${secretNumber}.`);
+                        }
                     }
                 }
             });
+
+            document.getElementById("restartBtn").addEventListener("click", startGame);
+
+            startGame();
         });
     </script>
 </head>
@@ -63,5 +89,8 @@
     <input type="text" id="inputBox" placeholder="Enter your guess" />
     <br>
     <button id="submitBtn">Submit Guess</button>
+    <button id="restartBtn" style="display: none;">Restart Game</button>
 </body>
 </html>
+
+   
