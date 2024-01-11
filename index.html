@@ -35,19 +35,24 @@
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            let secretNumber;
+            const words = ["javascript", "programming", "web", "development", "openai", "gpt", "challenge"];
+            let secretWord;
+            let displayWord;
             let attempts;
-            let score;
 
             function startGame() {
-                secretNumber = Math.floor(Math.random() * 100) + 1;
+                secretWord = words[Math.floor(Math.random() * words.length)];
+                displayWord = "_".repeat(secretWord.length);
                 attempts = 0;
-                score = 100;
 
-                document.getElementById("output").innerHTML = "";
+                document.getElementById("output").innerHTML = `Guess the word: ${displayWord}`;
                 document.getElementById("inputBox").value = "";
                 document.getElementById("submitBtn").disabled = false;
                 document.getElementById("restartBtn").style.display = "none";
+            }
+
+            function updateDisplayWord() {
+                document.getElementById("output").innerHTML = `Guess the word: ${displayWord}`;
             }
 
             function endGame(message) {
@@ -57,21 +62,31 @@
             }
 
             document.getElementById("submitBtn").addEventListener("click", function () {
-                const userGuess = parseInt(document.getElementById("inputBox").value);
+                const userGuess = document.getElementById("inputBox").value.toLowerCase();
 
-                if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
-                    document.getElementById("output").innerHTML = "Please enter a valid number between 1 and 100.";
+                if (!userGuess || userGuess.length !== 1 || !(/[a-z]/.test(userGuess))) {
+                    document.getElementById("output").innerHTML = "Please enter a single letter.";
                 } else {
                     attempts++;
 
-                    if (userGuess === secretNumber) {
-                        endGame(`Congratulations! You guessed the number ${secretNumber} in ${attempts} attempts with a score of ${score}.`);
+                    if (secretWord.includes(userGuess)) {
+                        // Update the display word with correctly guessed letters
+                        for (let i = 0; i < secretWord.length; i++) {
+                            if (secretWord[i] === userGuess) {
+                                displayWord = displayWord.substring(0, i) + userGuess + displayWord.substring(i + 1);
+                            }
+                        }
+
+                        // Check if the word is fully guessed
+                        if (displayWord === secretWord) {
+                            endGame(`Congratulations! You guessed the word "${secretWord}" in ${attempts} attempts.`);
+                        } else {
+                            updateDisplayWord();
+                        }
                     } else {
-                        const hint = userGuess < secretNumber ? "higher" : "lower";
-                        document.getElementById("output").innerHTML = `Incorrect! Try a ${hint} number. Attempts: ${attempts}`;
-                        score -= 10; // Penalty for each incorrect guess
-                        if (score <= 0) {
-                            endGame(`Sorry, you've run out of attempts. The correct number was ${secretNumber}.`);
+                        document.getElementById("output").innerHTML = `Incorrect! Attempts: ${attempts}`;
+                        if (attempts >= 6) {
+                            endGame(`Sorry, you've run out of attempts. The correct word was "${secretWord}".`);
                         }
                     }
                 }
@@ -84,13 +99,15 @@
     </script>
 </head>
 <body>
-    <h1>Guess the Number Game</h1>
+    <h1>Word Guessing Game</h1>
     <div id="output"></div>
-    <input type="text" id="inputBox" placeholder="Enter your guess" />
+    <input type="text" id="inputBox" placeholder="Enter a letter" maxlength="1" />
     <br>
     <button id="submitBtn">Submit Guess</button>
     <button id="restartBtn" style="display: none;">Restart Game</button>
 </body>
 </html>
+
+
 
    
