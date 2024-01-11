@@ -6,116 +6,77 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            text-align: center;
-            margin-top: 50px;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
         }
 
-        h1 {
-            color: #333;
+        #chat-box {
+            flex: 1;
+            overflow-y: scroll;
+            padding: 20px;
         }
 
-        #field {
-            position: relative;
-            width: 400px;
-            height: 200px;
-            background-color: #8DB600;
-            margin: 20px auto;
+        #input-box {
+            display: flex;
+            align-items: center;
+            padding: 10px;
         }
 
-        #ball {
-            position: absolute;
-            width: 30px;
-            height: 30px;
-            background-color: #FFFFFF;
-            border-radius: 50%;
-            top: 85px;
-            left: 185px;
-        }
-
-        #goal {
-            position: absolute;
-            width: 10px;
-            height: 100px;
-            background-color: #FFFFFF;
-            top: 50px;
-        }
-
-        #goal-left {
-            left: 0;
-        }
-
-        #goal-right {
-            right: 0;
-        }
-
-        #score {
-            font-size: 18px;
-            margin-top: 20px;
-            color: #333;
-        }
-
-        #restartBtn {
+        #message-input {
+            flex: 1;
             font-size: 16px;
-            padding: 5px 10px;
+            padding: 8px;
+        }
+
+        #send-button {
+            font-size: 16px;
+            padding: 8px 16px;
             cursor: pointer;
-            margin-top: 10px;
         }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            let ball = document.getElementById("ball");
-            let goalLeft = document.getElementById("goal-left");
-            let goalRight = document.getElementById("goal-right");
-            let score = 0;
+            const chatBox = document.getElementById("chat-box");
+            const messageInput = document.getElementById("message-input");
+            const sendButton = document.getElementById("send-button");
 
-            function moveBall() {
-                const direction = Math.random() < 0.5 ? -1 : 1;
-                const speed = Math.random() * 5 + 2;
-
-                ball.style.transition = "none";
-                ball.style.left = "185px";
-                ball.style.top = "85px";
-
-                setTimeout(() => {
-                    ball.style.transition = `all ${speed}s linear`;
-                    ball.style.left = `${direction === 1 ? 370 : 0}px`;
-                    ball.style.top = `${Math.random() * 140}px`;
-                }, 10);
-            }
-
-            function checkGoal() {
-                const ballLeft = parseInt(ball.style.left);
-                const ballTop = parseInt(ball.style.top);
-
-                if (ballLeft > 370 && ballTop > 50 && ballTop < 150) {
-                    score++;
-                    document.getElementById("score").innerText = `Score: ${score}`;
-                    moveBall();
+            sendButton.addEventListener("click", function () {
+                const message = messageInput.value.trim();
+                if (message !== "") {
+                    addMessage("You", message);
+                    simulateChatGPTResponse(message);
+                    messageInput.value = "";
                 }
+            });
+
+            function addMessage(sender, text) {
+                const messageElement = document.createElement("div");
+                messageElement.innerHTML = `<strong>${sender}:</strong> ${text}`;
+                chatBox.appendChild(messageElement);
+
+                // Auto-scroll to the bottom
+                chatBox.scrollTop = chatBox.scrollHeight;
             }
 
-            document.getElementById("goal-left").addEventListener("click", function () {
-                score = 0;
-                document.getElementById("score").innerText = "Score: 0";
-                moveBall();
-            });
+            function simulateChatGPTResponse(userMessage) {
+                // Simulate a response from ChatGPT (in a real scenario, this would be a server call)
+                const response = "I'm just a simple simulation, but I hope you're having a great day!";
 
-            document.getElementById("goal-right").addEventListener("click", function () {
-                checkGoal();
-            });
+                setTimeout(function () {
+                    addMessage("ChatGPT", response);
+                }, 500);
+            }
         });
     </script>
 </head>
 <body>
-    <h1>Football Game</h1>
-    <div id="field">
-        <div id="goal" id="goal-left"></div>
-        <div id="goal" id="goal-right"></div>
-        <div id="ball"></div>
+    <div id="chat-box"></div>
+    <div id="input-box">
+        <input type="text" id="message-input" placeholder="Type a message..." />
+        <button id="send-button">Send</button>
     </div>
-    <div id="score">Score: 0</div>
-    <button id="restartBtn">Restart Game</button>
 </body>
 </html>
-
-
