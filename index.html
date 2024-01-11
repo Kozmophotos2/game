@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+
+         <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,134 +15,143 @@
             color: #333;
         }
 
+        #game-board {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .card {
+            width: 100px;
+            height: 150px;
+            margin: 10px;
+            cursor: pointer;
+            background-color: #ddd;
+            border: 2px solid #333;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
         #output {
             font-size: 18px;
-            margin-bottom: 10px;
+            margin-top: 20px;
             color: #333;
         }
 
-        #inputBox {
-            margin-top: 20px;
-            font-size: 16px;
-            padding: 5px;
-        }
-
-        #submitBtn, #restartBtn {
+        #restartBtn {
             font-size: 16px;
             padding: 5px 10px;
             cursor: pointer;
             margin-top: 10px;
         }
-
-        #hangman {
-            margin-top: 20px;
-        }
-
-        .hidden {
-            display: none;
-        }
     </style>
     <script>
         document.addEventListener("DOMContentLoaded", function () {
-            const words = ["javascript", "programming", "web", "development", "openai", "hangman", "challenge"];
-            let secretWord;
-            let displayWord;
-            let incorrectGuesses;
-            let hangmanParts;
+            const symbols = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
+            const totalPairs = 4; // Increase this value to make the game harder
+            const totalCards = totalPairs * 2;
+            let cards = [];
+            let flippedCards = [];
+            let matchedPairs = 0;
+            let attempts = 0;
 
-            function startGame() {
-                secretWord = words[Math.floor(Math.random() * words.length)];
-                displayWord = "_".repeat(secretWord.length);
-                incorrectGuesses = 0;
-                hangmanParts = document.querySelectorAll('.hangman-part');
+            function generateCards() {
+                cards = [];
+                flippedCards = [];
+                matchedPairs = 0;
+                attempts = 0;
 
-                for (let i = 0; i < hangmanParts.length; i++) {
-                    hangmanParts[i].classList.add('hidden');
+                for (let i = 0; i < totalPairs; i++) {
+                    const symbol = symbols[i];
+                    cards.push(symbol, symbol);
                 }
 
-                document.getElementById("output").innerHTML = `Guess the word: ${displayWord}`;
-                document.getElementById("inputBox").value = "";
-                document.getElementById("submitBtn").disabled = false;
-                document.getElementById("restartBtn").style.display = "none";
+                // Shuffle the cards
+                cards.sort(() => Math.random() - 0.5);
+
+                renderGame();
             }
 
-            function updateDisplayWord() {
-                document.getElementById("output").innerHTML = `Guess the word: ${displayWord}`;
+            function renderGame() {
+                const gameBoard = document.getElementById("game-board");
+                gameBoard.innerHTML = '';
+
+                for (let i = 0; i < totalCards; i++) {
+                    const card = document.createElement("div");
+                    card.classList.add("card");
+                    card.dataset.index = i;
+                    card.innerHTML = '<span class="hidden">?</span>';
+                    card.addEventListener("click", handleCardClick);
+                    gameBoard.appendChild(card);
+                }
+            }
+
+            function handleCardClick(event) {
+                const clickedCard = event.target;
+                const index = clickedCard.dataset.index;
+
+                if (!flippedCards.includes(index) && flippedCards.length < 2) {
+                    flippedCards.push(index);
+                    showCardSymbol(clickedCard);
+
+                    if (flippedCards.length === 2) {
+                        setTimeout(checkMatch, 1000);
+                    }
+                }
+            }
+
+            function showCardSymbol(card) {
+                const index = card.dataset.index;
+                card.innerHTML = `<span>${cards[index]}</span>`;
+            }
+
+            function hideCardSymbol(card) {
+                card.innerHTML = '<span class="hidden">?</span>';
+            }
+
+            function checkMatch() {
+                const [index1, index2] = flippedCards;
+                const card1 = document.querySelector(`[data-index="${index1}"]`);
+                const card2 = document.querySelector(`[data-index="${index2}"]`);
+
+                attempts++;
+
+                if (cards[index1] === cards[index2]) {
+                    matchedPairs++;
+                    if (matchedPairs === totalPairs) {
+                        endGame(`Congratulations! You completed the game in ${attempts} attempts.`);
+                    } else {
+                        flippedCards = [];
+                    }
+                } else {
+                    hideCardSymbol(card1);
+                    hideCardSymbol(card2);
+                    flippedCards = [];
+                }
             }
 
             function endGame(message) {
                 document.getElementById("output").innerHTML = message;
-                document.getElementById("submitBtn").disabled = true;
                 document.getElementById("restartBtn").style.display = "block";
             }
 
-            function updateHangman() {
-                if (incorrectGuesses < hangmanParts.length) {
-                    hangmanParts[incorrectGuesses].classList.remove('hidden');
-                }
-
-                if (incorrectGuesses === hangmanParts.length - 1) {
-                    endGame(`Sorry, you've run out of attempts. The correct word was "${secretWord}".`);
-                }
-            }
-
-            document.getElementById("submitBtn").addEventListener("click", function () {
-                const userGuess = document.getElementById("inputBox").value.toLowerCase();
-
-                if (!userGuess || userGuess.length !== 1 || !(/[a-z]/.test(userGuess))) {
-                    document.getElementById("output").innerHTML = "Please enter a single letter.";
-                } else {
-                    if (secretWord.includes(userGuess)) {
-                        // Update the display word with correctly guessed letters
-                        for (let i = 0; i < secretWord.length; i++) {
-                            if (secretWord[i] === userGuess) {
-                                displayWord = displayWord.substring(0, i) + userGuess + displayWord.substring(i + 1);
-                            }
-                        }
-
-                        // Check if the word is fully guessed
-                        if (displayWord === secretWord) {
-                            endGame(`Congratulations! You guessed the word "${secretWord}" with ${incorrectGuesses} incorrect attempts.`);
-                        } else {
-                            updateDisplayWord();
-                        }
-                    } else {
-                        incorrectGuesses++;
-                        updateHangman();
-                        document.getElementById("output").innerHTML = `Incorrect! Attempts left: ${hangmanParts.length - incorrectGuesses}`;
-                    }
-                }
+            document.getElementById("restartBtn").addEventListener("click", function () {
+                document.getElementById("output").innerHTML = '';
+                document.getElementById("restartBtn").style.display = "none";
+                generateCards();
             });
 
-            document.getElementById("restartBtn").addEventListener("click", startGame);
-
-            startGame();
+            generateCards();
         });
     </script>
 </head>
 <body>
-    <h1>Hangman Game</h1>
+    <h1>Memory Matching Game</h1>
+    <div id="game-board"></div>
     <div id="output"></div>
-    <input type="text" id="inputBox" placeholder="Enter a letter" maxlength="1" />
-    <br>
-    <button id="submitBtn">Submit Guess</button>
     <button id="restartBtn" style="display: none;">Restart Game</button>
-
-    <div id="hangman">
-        <div class="hangman-part hidden">H</div>
-        <div class="hangman-part hidden">A</div>
-        <div class="hangman-part hidden">N</div>
-        <div class="hangman-part hidden">G</div>
-        <div class="hangman-part hidden">M</div>
-        <div class="hangman-part hidden">A</div>
-        <div class="hangman-part hidden">N</div>
-    </div>
 </body>
 </html>
-
-
-     
-
-
-
-   
