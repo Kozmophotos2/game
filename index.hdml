@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #output {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        #inputBox {
+            margin-top: 20px;
+            font-size: 16px;
+            padding: 5px;
+        }
+
+        #submitBtn {
+            font-size: 16px;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const secretNumber = Math.floor(Math.random() * 100) + 1;
+            let attempts = 0;
+
+            const output = document.getElementById("output");
+            const inputBox = document.getElementById("inputBox");
+            const submitBtn = document.getElementById("submitBtn");
+
+            submitBtn.addEventListener("click", function () {
+                const userGuess = parseInt(inputBox.value);
+
+                if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
+                    output.innerHTML = "Please enter a valid number between 1 and 100.";
+                } else {
+                    attempts++;
+
+                    if (userGuess === secretNumber) {
+                        output.innerHTML = `Congratulations! You guessed the number ${secretNumber} in ${attempts} attempts.`;
+                        inputBox.disabled = true;
+                        submitBtn.disabled = true;
+                    } else {
+                        const hint = userGuess < secretNumber ? "higher" : "lower";
+                        output.innerHTML = `Incorrect! Try a ${hint} number. Attempts: ${attempts}`;
+                    }
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <h1>Guess the Number Game</h1>
+    <div id="output"></div>
+    <input type="text" id="inputBox" placeholder="Enter your guess" />
+    <br>
+    <button id="submitBtn">Submit Guess</button>
+</body>
+</html>
