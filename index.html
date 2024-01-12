@@ -6,8 +6,7 @@
     <title>IP Display</title>
 </head>
 <body>
-    <h1>Your IP Address:</h1>
-    <p id="userIP">Fetching...</p>
+    <h1>Welcome to the IP Display</h1>
 
     <script>
         async function getUserIP() {
@@ -23,10 +22,11 @@
 
         async function displayUserIP() {
             const userIP = await getUserIP();
-            document.getElementById('userIP').textContent = userIP;
+            alert(`Your IP address is: ${userIP}`);
         }
 
         displayUserIP();
     </script>
 </body>
 </html>
+
