@@ -5,78 +5,69 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
-            font-family: 'Arial', sans-serif;
             margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-            height: 100vh;
+            overflow: hidden;
         }
 
-        #chat-box {
-            flex: 1;
-            overflow-y: scroll;
-            padding: 20px;
-        }
-
-        #input-box {
-            display: flex;
-            align-items: center;
-            padding: 10px;
-        }
-
-        #message-input {
-            flex: 1;
-            font-size: 16px;
-            padding: 8px;
-        }
-
-        #send-button {
-            font-size: 16px;
-            padding: 8px 16px;
-            cursor: pointer;
+        canvas {
+            display: block;
         }
     </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const chatBox = document.getElementById("chat-box");
-            const messageInput = document.getElementById("message-input");
-            const sendButton = document.getElementById("send-button");
-
-            sendButton.addEventListener("click", function () {
-                const message = messageInput.value.trim();
-                if (message !== "") {
-                    addMessage("You", message);
-                    simulateChatGPTResponse(message);
-                    messageInput.value = "";
-                }
-            });
-
-            function addMessage(sender, text) {
-                const messageElement = document.createElement("div");
-                messageElement.innerHTML = `<strong>${sender}:</strong> ${text}`;
-                chatBox.appendChild(messageElement);
-
-                // Auto-scroll to the bottom
-                chatBox.scrollTop = chatBox.scrollHeight;
-            }
-
-            function simulateChatGPTResponse(userMessage) {
-                // Simulate a response from ChatGPT (in a real scenario, this would be a server call)
-                const response = "I'm just a simple simulation, but I hope you're having a great day!";
-
-                setTimeout(function () {
-                    addMessage("ChatGPT", response);
-                }, 500);
-            }
-        });
-    </script>
 </head>
 <body>
-    <div id="chat-box"></div>
-    <div id="input-box">
-        <input type="text" id="message-input" placeholder="Type a message..." />
-        <button id="send-button">Send</button>
-    </div>
+    <canvas id="minecraftCanvas"></canvas>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const canvas = document.getElementById("minecraftCanvas");
+            const ctx = canvas.getContext("2d");
+
+            const blockSize = 30;
+            const worldWidth = 10;
+            const worldHeight = 10;
+            const world = [];
+
+            // Initialize the world with random blocks
+            for (let i = 0; i < worldWidth; i++) {
+                world[i] = [];
+                for (let j = 0; j < worldHeight; j++) {
+                    world[i][j] = Math.random() < 0.5 ? "grass" : "stone";
+                }
+            }
+
+            function drawWorld() {
+                for (let i = 0; i < worldWidth; i++) {
+                    for (let j = 0; j < worldHeight; j++) {
+                        const blockType = world[i][j];
+                        const x = i * blockSize;
+                        const y = j * blockSize;
+
+                        ctx.fillStyle = blockType === "grass" ? "#00FF00" : "#808080";
+                        ctx.fillRect(x, y, blockSize, blockSize);
+                    }
+                }
+            }
+
+            function handleKeyDown(event) {
+                // Handle keyboard input if needed
+                // For example, you could move a character within the world
+            }
+
+            function gameLoop() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                drawWorld();
+
+                // Other game logic can be added here
+
+                requestAnimationFrame(gameLoop);
+            }
+
+            window.addEventListener("keydown", handleKeyDown);
+
+            canvas.width = worldWidth * blockSize;
+            canvas.height = worldHeight * blockSize;
+
+            gameLoop();
+        });
+    </script>
 </body>
 </html>
