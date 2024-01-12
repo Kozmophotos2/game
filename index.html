@@ -3,71 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-        }
-
-        canvas {
-            display: block;
-        }
-    </style>
+    <title>Chatbot with GPT-3</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-    <canvas id="minecraftCanvas"></canvas>
+    <div id="chat-container"></div>
+    <input type="text" id="user-input" placeholder="Type your message...">
+    <button onclick="sendMessage()">Send</button>
+
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const canvas = document.getElementById("minecraftCanvas");
-            const ctx = canvas.getContext("2d");
+        const chatContainer = document.getElementById("chat-container");
+        const userInput = document.getElementById("user-input");
 
-            const blockSize = 30;
-            const worldWidth = 10;
-            const worldHeight = 10;
-            const world = [];
+        async function sendMessage() {
+            const userMessage = userInput.value;
+            appendMessage("User", userMessage);
 
-            // Initialize the world with random blocks
-            for (let i = 0; i < worldWidth; i++) {
-                world[i] = [];
-                for (let j = 0; j < worldHeight; j++) {
-                    world[i][j] = Math.random() < 0.5 ? "grass" : "stone";
-                }
-            }
-
-            function drawWorld() {
-                for (let i = 0; i < worldWidth; i++) {
-                    for (let j = 0; j < worldHeight; j++) {
-                        const blockType = world[i][j];
-                        const x = i * blockSize;
-                        const y = j * blockSize;
-
-                        ctx.fillStyle = blockType === "grass" ? "#00FF00" : "#808080";
-                        ctx.fillRect(x, y, blockSize, blockSize);
+            // Use your GPT-3 API key here
+            const apiKey = "YOUR_GPT3_API_KEY";
+            const apiUrl = "https://api.openai.com/v1/engines/davinci-codex/completions";
+            
+            try {
+                const response = await axios.post(apiUrl, {
+                    prompt: `User: ${userMessage}\nChatGPT:`,
+                    max_tokens: 150
+                }, {
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${apiKey}`
                     }
-                }
+                });
+
+                const chatGptMessage = response.data.choices[0].text.trim();
+                appendMessage("ChatGPT", chatGptMessage);
+            } catch (error) {
+                console.error("Error sending message:", error);
             }
 
-            function handleKeyDown(event) {
-                // Handle keyboard input if needed
-                // For example, you could move a character within the world
-            }
+            userInput.value = "";
+        }
 
-            function gameLoop() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                drawWorld();
-
-                // Other game logic can be added here
-
-                requestAnimationFrame(gameLoop);
-            }
-
-            window.addEventListener("keydown", handleKeyDown);
-
-            canvas.width = worldWidth * blockSize;
-            canvas.height = worldHeight * blockSize;
-
-            gameLoop();
-        });
+        function appendMessage(sender, message) {
+            const messageElement = document.createElement("div");
+            messageElement.innerHTML = `<strong>${sender}:</strong> ${message}`;
+            chatContainer.appendChild(messageElement);
+        }
     </script>
 </body>
 </html>
