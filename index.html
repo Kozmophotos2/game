@@ -3,65 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin-top: 50px;
-        }
-
-        #output {
-            font-size: 18px;
-            margin-bottom: 10px;
-        }
-
-        #inputBox {
-            margin-top: 20px;
-            font-size: 16px;
-            padding: 5px;
-        }
-
-        #submitBtn {
-            font-size: 16px;
-            padding: 5px 10px;
-            cursor: pointer;
-        }
-    </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const secretNumber = Math.floor(Math.random() * 100) + 1;
-            let attempts = 0;
-
-            const output = document.getElementById("output");
-            const inputBox = document.getElementById("inputBox");
-            const submitBtn = document.getElementById("submitBtn");
-
-            submitBtn.addEventListener("click", function () {
-                const userGuess = parseInt(inputBox.value);
-
-                if (isNaN(userGuess) || userGuess < 1 || userGuess > 100) {
-                    output.innerHTML = "Please enter a valid number between 1 and 100.";
-                } else {
-                    attempts++;
-
-                    if (userGuess === secretNumber) {
-                        output.innerHTML = `Congratulations! You guessed the number ${secretNumber} in ${attempts} attempts.`;
-                        inputBox.disabled = true;
-                        submitBtn.disabled = true;
-                    } else {
-                        const hint = userGuess < secretNumber ? "higher" : "lower";
-                        output.innerHTML = `Incorrect! Try a ${hint} number. Attempts: ${attempts}`;
-                    }
-                }
-            });
-        });
-    </script>
+    <title>IP Tracker</title>
 </head>
 <body>
-    <h1>Guess the Number Game</h1>
-    <div id="output"></div>
-    <input type="text" id="inputBox" placeholder="Enter your guess" />
-    <br>
-    <button id="submitBtn">Submit Guess</button>
+    <h1>Welcome to the IP Tracker</h1>
+    <p>Your IP address is: <span id="userIP"></span></p>
+
+    <script>
+        // Function to get the user's IP address
+        async function getUserIP() {
+            const response = await fetch('https://api64.ipify.org?format=json');
+            const data = await response.json();
+            return data.ip;
+        }
+
+        // Display the user's IP address
+        async function displayUserIP() {
+            try {
+                const userIP = await getUserIP();
+                document.getElementById('userIP').textContent = userIP;
+            } catch (error) {
+                console.error('Error fetching IP address:', error);
+            }
+        }
+
+        // Call the function to display the user's IP address
+        displayUserIP();
+    </script>
 </body>
 </html>
