@@ -3,30 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IP Display</title>
+    <title>Smart Number Guessing Game</title>
 </head>
 <body>
-    <h1>Welcome to the IP Display</h1>
+    <h1>Smart Number Guessing Game</h1>
+    <p>Think of a number between 1 and 100, and let the AI guess it!</p>
+    <p id="message"></p>
 
     <script>
-        async function getUserIP() {
-            try {
-                const response = await fetch('https://api64.ipify.org?format=json');
-                const data = await response.json();
-                return data.ip;
-            } catch (error) {
-                console.error('Error fetching IP address:', error);
-                return 'Error';
+        document.addEventListener("DOMContentLoaded", function () {
+            const messageElement = document.getElementById("message");
+            let low = 1;
+            let high = 100;
+
+            function guessNumber() {
+                const guess = Math.floor((low + high) / 2);
+                const response = prompt(`Is your number ${guess}? (Type 'higher', 'lower', or 'correct')`);
+
+                if (response.toLowerCase() === "higher") {
+                    low = guess + 1;
+                    guessNumber();
+                } else if (response.toLowerCase() === "lower") {
+                    high = guess - 1;
+                    guessNumber();
+                } else if (response.toLowerCase() === "correct") {
+                    messageElement.textContent = `Hooray! The AI guessed your number: ${guess}`;
+                } else {
+                    messageElement.textContent = "Invalid response. Please type 'higher', 'lower', or 'correct'.";
+                    guessNumber();
+                }
             }
-        }
 
-        async function displayUserIP() {
-            const userIP = await getUserIP();
-            alert(`Your IP address is: ${userIP}`);
-        }
-
-        displayUserIP();
+            guessNumber();
+        });
     </script>
 </body>
 </html>
-
