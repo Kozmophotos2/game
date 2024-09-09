@@ -1,25 +1,1894 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Console Instrumentation Example</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <h1>Console Instrumentation Example</h1>
-    </header>
+<html lang="en" data-astro-cid-sckkx6r4=""><head><script type="text/javascript" charset="UTF-8" src="//cdn.cookie-script.com/s/bac70e92fd02731a20df8be0106833c2.js"></script><!-- Google tag (gtag.js) --><!-- We always load GA, but initially consent is denied. --><script type="application/javascript">
+  // Define dataLayer and the gtag function.
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){
+    dataLayer.push(arguments);
+  }
+</script> <script type="text/plain" data-cookiescript="accepted" data-cookiecategory="performance">(function(){const id = "G-SJNCKNW32W";
 
-    <section>
-        <h2>Console Output</h2>
-        <p>Open the browser console to see the instrumented console outputs.</p>
-    </section>
+  gtag('js', new Date());
 
-    <footer>
-        <p>&copy; 2024 Console Instrumentation</p>
-    </footer>
+  gtag('config', id);
 
-    <script type="module" src="console.js"></script>
-</body>
-</html>
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.async = true;
+  script.src = '//www.googletagmanager.com/gtag/js?id=' + id;
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();</script><meta charset="UTF-8"><meta name="viewport" content="width=device-width"><meta name="theme-color" content="#2179DE"><style type="text/css">:root, :host {
+  --fa-font-solid: normal 900 1em/1 "Font Awesome 6 Solid";
+  --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Regular";
+  --fa-font-light: normal 300 1em/1 "Font Awesome 6 Light";
+  --fa-font-thin: normal 100 1em/1 "Font Awesome 6 Thin";
+  --fa-font-duotone: normal 900 1em/1 "Font Awesome 6 Duotone";
+  --fa-font-sharp-solid: normal 900 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-regular: normal 400 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-light: normal 300 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-sharp-thin: normal 100 1em/1 "Font Awesome 6 Sharp";
+  --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands";
+}
+
+svg:not(:root).svg-inline--fa, svg:not(:host).svg-inline--fa {
+  overflow: visible;
+  box-sizing: content-box;
+}
+
+.svg-inline--fa {
+  display: var(--fa-display, inline-block);
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+.svg-inline--fa.fa-2xs {
+  vertical-align: 0.1em;
+}
+.svg-inline--fa.fa-xs {
+  vertical-align: 0em;
+}
+.svg-inline--fa.fa-sm {
+  vertical-align: -0.0714285705em;
+}
+.svg-inline--fa.fa-lg {
+  vertical-align: -0.2em;
+}
+.svg-inline--fa.fa-xl {
+  vertical-align: -0.25em;
+}
+.svg-inline--fa.fa-2xl {
+  vertical-align: -0.3125em;
+}
+.svg-inline--fa.fa-pull-left {
+  margin-right: var(--fa-pull-margin, 0.3em);
+  width: auto;
+}
+.svg-inline--fa.fa-pull-right {
+  margin-left: var(--fa-pull-margin, 0.3em);
+  width: auto;
+}
+.svg-inline--fa.fa-li {
+  width: var(--fa-li-width, 2em);
+  top: 0.25em;
+}
+.svg-inline--fa.fa-fw {
+  width: var(--fa-fw-width, 1.25em);
+}
+
+.fa-layers svg.svg-inline--fa {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.fa-layers-counter, .fa-layers-text {
+  display: inline-block;
+  position: absolute;
+  text-align: center;
+}
+
+.fa-layers {
+  display: inline-block;
+  height: 1em;
+  position: relative;
+  text-align: center;
+  vertical-align: -0.125em;
+  width: 1em;
+}
+.fa-layers svg.svg-inline--fa {
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+}
+
+.fa-layers-text {
+  left: 50%;
+  top: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+}
+
+.fa-layers-counter {
+  background-color: var(--fa-counter-background-color, #ff253a);
+  border-radius: var(--fa-counter-border-radius, 1em);
+  box-sizing: border-box;
+  color: var(--fa-inverse, #fff);
+  line-height: var(--fa-counter-line-height, 1);
+  max-width: var(--fa-counter-max-width, 5em);
+  min-width: var(--fa-counter-min-width, 1.5em);
+  overflow: hidden;
+  padding: var(--fa-counter-padding, 0.25em 0.5em);
+  right: var(--fa-right, 0);
+  text-overflow: ellipsis;
+  top: var(--fa-top, 0);
+  -webkit-transform: scale(var(--fa-counter-scale, 0.25));
+          transform: scale(var(--fa-counter-scale, 0.25));
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+}
+
+.fa-layers-bottom-right {
+  bottom: var(--fa-bottom, 0);
+  right: var(--fa-right, 0);
+  top: auto;
+  -webkit-transform: scale(var(--fa-layers-scale, 0.25));
+          transform: scale(var(--fa-layers-scale, 0.25));
+  -webkit-transform-origin: bottom right;
+          transform-origin: bottom right;
+}
+
+.fa-layers-bottom-left {
+  bottom: var(--fa-bottom, 0);
+  left: var(--fa-left, 0);
+  right: auto;
+  top: auto;
+  -webkit-transform: scale(var(--fa-layers-scale, 0.25));
+          transform: scale(var(--fa-layers-scale, 0.25));
+  -webkit-transform-origin: bottom left;
+          transform-origin: bottom left;
+}
+
+.fa-layers-top-right {
+  top: var(--fa-top, 0);
+  right: var(--fa-right, 0);
+  -webkit-transform: scale(var(--fa-layers-scale, 0.25));
+          transform: scale(var(--fa-layers-scale, 0.25));
+  -webkit-transform-origin: top right;
+          transform-origin: top right;
+}
+
+.fa-layers-top-left {
+  left: var(--fa-left, 0);
+  right: auto;
+  top: var(--fa-top, 0);
+  -webkit-transform: scale(var(--fa-layers-scale, 0.25));
+          transform: scale(var(--fa-layers-scale, 0.25));
+  -webkit-transform-origin: top left;
+          transform-origin: top left;
+}
+
+.fa-1x {
+  font-size: 1em;
+}
+
+.fa-2x {
+  font-size: 2em;
+}
+
+.fa-3x {
+  font-size: 3em;
+}
+
+.fa-4x {
+  font-size: 4em;
+}
+
+.fa-5x {
+  font-size: 5em;
+}
+
+.fa-6x {
+  font-size: 6em;
+}
+
+.fa-7x {
+  font-size: 7em;
+}
+
+.fa-8x {
+  font-size: 8em;
+}
+
+.fa-9x {
+  font-size: 9em;
+}
+
+.fa-10x {
+  font-size: 10em;
+}
+
+.fa-2xs {
+  font-size: 0.625em;
+  line-height: 0.1em;
+  vertical-align: 0.225em;
+}
+
+.fa-xs {
+  font-size: 0.75em;
+  line-height: 0.0833333337em;
+  vertical-align: 0.125em;
+}
+
+.fa-sm {
+  font-size: 0.875em;
+  line-height: 0.0714285718em;
+  vertical-align: 0.0535714295em;
+}
+
+.fa-lg {
+  font-size: 1.25em;
+  line-height: 0.05em;
+  vertical-align: -0.075em;
+}
+
+.fa-xl {
+  font-size: 1.5em;
+  line-height: 0.0416666682em;
+  vertical-align: -0.125em;
+}
+
+.fa-2xl {
+  font-size: 2em;
+  line-height: 0.03125em;
+  vertical-align: -0.1875em;
+}
+
+.fa-fw {
+  text-align: center;
+  width: 1.25em;
+}
+
+.fa-ul {
+  list-style-type: none;
+  margin-left: var(--fa-li-margin, 2.5em);
+  padding-left: 0;
+}
+.fa-ul > li {
+  position: relative;
+}
+
+.fa-li {
+  left: calc(var(--fa-li-width, 2em) * -1);
+  position: absolute;
+  text-align: center;
+  width: var(--fa-li-width, 2em);
+  line-height: inherit;
+}
+
+.fa-border {
+  border-color: var(--fa-border-color, #eee);
+  border-radius: var(--fa-border-radius, 0.1em);
+  border-style: var(--fa-border-style, solid);
+  border-width: var(--fa-border-width, 0.08em);
+  padding: var(--fa-border-padding, 0.2em 0.25em 0.15em);
+}
+
+.fa-pull-left {
+  float: left;
+  margin-right: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-pull-right {
+  float: right;
+  margin-left: var(--fa-pull-margin, 0.3em);
+}
+
+.fa-beat {
+  -webkit-animation-name: fa-beat;
+          animation-name: fa-beat;
+  -webkit-animation-delay: var(--fa-animation-delay, 0s);
+          animation-delay: var(--fa-animation-delay, 0s);
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 1s);
+          animation-duration: var(--fa-animation-duration, 1s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, ease-in-out);
+          animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-bounce {
+  -webkit-animation-name: fa-bounce;
+          animation-name: fa-bounce;
+  -webkit-animation-delay: var(--fa-animation-delay, 0s);
+          animation-delay: var(--fa-animation-delay, 0s);
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 1s);
+          animation-duration: var(--fa-animation-duration, 1s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
+          animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.28, 0.84, 0.42, 1));
+}
+
+.fa-fade {
+  -webkit-animation-name: fa-fade;
+          animation-name: fa-fade;
+  -webkit-animation-delay: var(--fa-animation-delay, 0s);
+          animation-delay: var(--fa-animation-delay, 0s);
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 1s);
+          animation-duration: var(--fa-animation-duration, 1s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+          animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-beat-fade {
+  -webkit-animation-name: fa-beat-fade;
+          animation-name: fa-beat-fade;
+  -webkit-animation-delay: var(--fa-animation-delay, 0s);
+          animation-delay: var(--fa-animation-delay, 0s);
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 1s);
+          animation-duration: var(--fa-animation-duration, 1s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+          animation-timing-function: var(--fa-animation-timing, cubic-bezier(0.4, 0, 0.6, 1));
+}
+
+.fa-flip {
+  -webkit-animation-name: fa-flip;
+          animation-name: fa-flip;
+  -webkit-animation-delay: var(--fa-animation-delay, 0s);
+          animation-delay: var(--fa-animation-delay, 0s);
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 1s);
+          animation-duration: var(--fa-animation-duration, 1s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, ease-in-out);
+          animation-timing-function: var(--fa-animation-timing, ease-in-out);
+}
+
+.fa-shake {
+  -webkit-animation-name: fa-shake;
+          animation-name: fa-shake;
+  -webkit-animation-delay: var(--fa-animation-delay, 0s);
+          animation-delay: var(--fa-animation-delay, 0s);
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 1s);
+          animation-duration: var(--fa-animation-duration, 1s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, linear);
+          animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin {
+  -webkit-animation-name: fa-spin;
+          animation-name: fa-spin;
+  -webkit-animation-delay: var(--fa-animation-delay, 0s);
+          animation-delay: var(--fa-animation-delay, 0s);
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 2s);
+          animation-duration: var(--fa-animation-duration, 2s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, linear);
+          animation-timing-function: var(--fa-animation-timing, linear);
+}
+
+.fa-spin-reverse {
+  --fa-animation-direction: reverse;
+}
+
+.fa-pulse,
+.fa-spin-pulse {
+  -webkit-animation-name: fa-spin;
+          animation-name: fa-spin;
+  -webkit-animation-direction: var(--fa-animation-direction, normal);
+          animation-direction: var(--fa-animation-direction, normal);
+  -webkit-animation-duration: var(--fa-animation-duration, 1s);
+          animation-duration: var(--fa-animation-duration, 1s);
+  -webkit-animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+          animation-iteration-count: var(--fa-animation-iteration-count, infinite);
+  -webkit-animation-timing-function: var(--fa-animation-timing, steps(8));
+          animation-timing-function: var(--fa-animation-timing, steps(8));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fa-beat,
+.fa-bounce,
+.fa-fade,
+.fa-beat-fade,
+.fa-flip,
+.fa-pulse,
+.fa-shake,
+.fa-spin,
+.fa-spin-pulse {
+    -webkit-animation-delay: -1ms;
+            animation-delay: -1ms;
+    -webkit-animation-duration: 1ms;
+            animation-duration: 1ms;
+    -webkit-animation-iteration-count: 1;
+            animation-iteration-count: 1;
+    -webkit-transition-delay: 0s;
+            transition-delay: 0s;
+    -webkit-transition-duration: 0s;
+            transition-duration: 0s;
+  }
+}
+@-webkit-keyframes fa-beat {
+  0%, 90% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  45% {
+    -webkit-transform: scale(var(--fa-beat-scale, 1.25));
+            transform: scale(var(--fa-beat-scale, 1.25));
+  }
+}
+@keyframes fa-beat {
+  0%, 90% {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  45% {
+    -webkit-transform: scale(var(--fa-beat-scale, 1.25));
+            transform: scale(var(--fa-beat-scale, 1.25));
+  }
+}
+@-webkit-keyframes fa-bounce {
+  0% {
+    -webkit-transform: scale(1, 1) translateY(0);
+            transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    -webkit-transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+            transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+  }
+  30% {
+    -webkit-transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+            transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+  }
+  50% {
+    -webkit-transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+            transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+  }
+  57% {
+    -webkit-transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+            transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+  }
+  64% {
+    -webkit-transform: scale(1, 1) translateY(0);
+            transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    -webkit-transform: scale(1, 1) translateY(0);
+            transform: scale(1, 1) translateY(0);
+  }
+}
+@keyframes fa-bounce {
+  0% {
+    -webkit-transform: scale(1, 1) translateY(0);
+            transform: scale(1, 1) translateY(0);
+  }
+  10% {
+    -webkit-transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+            transform: scale(var(--fa-bounce-start-scale-x, 1.1), var(--fa-bounce-start-scale-y, 0.9)) translateY(0);
+  }
+  30% {
+    -webkit-transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+            transform: scale(var(--fa-bounce-jump-scale-x, 0.9), var(--fa-bounce-jump-scale-y, 1.1)) translateY(var(--fa-bounce-height, -0.5em));
+  }
+  50% {
+    -webkit-transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+            transform: scale(var(--fa-bounce-land-scale-x, 1.05), var(--fa-bounce-land-scale-y, 0.95)) translateY(0);
+  }
+  57% {
+    -webkit-transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+            transform: scale(1, 1) translateY(var(--fa-bounce-rebound, -0.125em));
+  }
+  64% {
+    -webkit-transform: scale(1, 1) translateY(0);
+            transform: scale(1, 1) translateY(0);
+  }
+  100% {
+    -webkit-transform: scale(1, 1) translateY(0);
+            transform: scale(1, 1) translateY(0);
+  }
+}
+@-webkit-keyframes fa-fade {
+  50% {
+    opacity: var(--fa-fade-opacity, 0.4);
+  }
+}
+@keyframes fa-fade {
+  50% {
+    opacity: var(--fa-fade-opacity, 0.4);
+  }
+}
+@-webkit-keyframes fa-beat-fade {
+  0%, 100% {
+    opacity: var(--fa-beat-fade-opacity, 0.4);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: scale(var(--fa-beat-fade-scale, 1.125));
+            transform: scale(var(--fa-beat-fade-scale, 1.125));
+  }
+}
+@keyframes fa-beat-fade {
+  0%, 100% {
+    opacity: var(--fa-beat-fade-opacity, 0.4);
+    -webkit-transform: scale(1);
+            transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    -webkit-transform: scale(var(--fa-beat-fade-scale, 1.125));
+            transform: scale(var(--fa-beat-fade-scale, 1.125));
+  }
+}
+@-webkit-keyframes fa-flip {
+  50% {
+    -webkit-transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+            transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+  }
+}
+@keyframes fa-flip {
+  50% {
+    -webkit-transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+            transform: rotate3d(var(--fa-flip-x, 0), var(--fa-flip-y, 1), var(--fa-flip-z, 0), var(--fa-flip-angle, -180deg));
+  }
+}
+@-webkit-keyframes fa-shake {
+  0% {
+    -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
+  }
+  4% {
+    -webkit-transform: rotate(15deg);
+            transform: rotate(15deg);
+  }
+  8%, 24% {
+    -webkit-transform: rotate(-18deg);
+            transform: rotate(-18deg);
+  }
+  12%, 28% {
+    -webkit-transform: rotate(18deg);
+            transform: rotate(18deg);
+  }
+  16% {
+    -webkit-transform: rotate(-22deg);
+            transform: rotate(-22deg);
+  }
+  20% {
+    -webkit-transform: rotate(22deg);
+            transform: rotate(22deg);
+  }
+  32% {
+    -webkit-transform: rotate(-12deg);
+            transform: rotate(-12deg);
+  }
+  36% {
+    -webkit-transform: rotate(12deg);
+            transform: rotate(12deg);
+  }
+  40%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@keyframes fa-shake {
+  0% {
+    -webkit-transform: rotate(-15deg);
+            transform: rotate(-15deg);
+  }
+  4% {
+    -webkit-transform: rotate(15deg);
+            transform: rotate(15deg);
+  }
+  8%, 24% {
+    -webkit-transform: rotate(-18deg);
+            transform: rotate(-18deg);
+  }
+  12%, 28% {
+    -webkit-transform: rotate(18deg);
+            transform: rotate(18deg);
+  }
+  16% {
+    -webkit-transform: rotate(-22deg);
+            transform: rotate(-22deg);
+  }
+  20% {
+    -webkit-transform: rotate(22deg);
+            transform: rotate(22deg);
+  }
+  32% {
+    -webkit-transform: rotate(-12deg);
+            transform: rotate(-12deg);
+  }
+  36% {
+    -webkit-transform: rotate(12deg);
+            transform: rotate(12deg);
+  }
+  40%, 100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+@-webkit-keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+@keyframes fa-spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+.fa-rotate-90 {
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+}
+
+.fa-rotate-180 {
+  -webkit-transform: rotate(180deg);
+          transform: rotate(180deg);
+}
+
+.fa-rotate-270 {
+  -webkit-transform: rotate(270deg);
+          transform: rotate(270deg);
+}
+
+.fa-flip-horizontal {
+  -webkit-transform: scale(-1, 1);
+          transform: scale(-1, 1);
+}
+
+.fa-flip-vertical {
+  -webkit-transform: scale(1, -1);
+          transform: scale(1, -1);
+}
+
+.fa-flip-both,
+.fa-flip-horizontal.fa-flip-vertical {
+  -webkit-transform: scale(-1, -1);
+          transform: scale(-1, -1);
+}
+
+.fa-rotate-by {
+  -webkit-transform: rotate(var(--fa-rotate-angle, 0));
+          transform: rotate(var(--fa-rotate-angle, 0));
+}
+
+.fa-stack {
+  display: inline-block;
+  vertical-align: middle;
+  height: 2em;
+  position: relative;
+  width: 2.5em;
+}
+
+.fa-stack-1x,
+.fa-stack-2x {
+  bottom: 0;
+  left: 0;
+  margin: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: var(--fa-stack-z-index, auto);
+}
+
+.svg-inline--fa.fa-stack-1x {
+  height: 1em;
+  width: 1.25em;
+}
+.svg-inline--fa.fa-stack-2x {
+  height: 2em;
+  width: 2.5em;
+}
+
+.fa-inverse {
+  color: var(--fa-inverse, #fff);
+}
+
+.sr-only,
+.fa-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.sr-only-focusable:not(:focus),
+.fa-sr-only-focusable:not(:focus) {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+.svg-inline--fa .fa-primary {
+  fill: var(--fa-primary-color, currentColor);
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa .fa-secondary {
+  fill: var(--fa-secondary-color, currentColor);
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-primary {
+  opacity: var(--fa-secondary-opacity, 0.4);
+}
+
+.svg-inline--fa.fa-swap-opacity .fa-secondary {
+  opacity: var(--fa-primary-opacity, 1);
+}
+
+.svg-inline--fa mask .fa-primary,
+.svg-inline--fa mask .fa-secondary {
+  fill: black;
+}
+
+.fad.fa-inverse,
+.fa-duotone.fa-inverse {
+  color: var(--fa-inverse, #fff);
+}</style><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="manifest" href="/site.webmanifest"><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""><link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&amp;family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&amp;display=fallback" rel="stylesheet"><meta name="generator" content="Astro v4.5.13"><title>Sparx Maths - Home</title><link rel="canonical" href="http://localhost:3000/"><meta name="description" content="Sparx Maths builds maths confidence through personalised homework for students aged 11-16 and is proven to significantly boost grades by the University of Cambridge"><meta name="robots" content="index, follow"><meta name="keywords" content="sparx maths, sparx maths homework, maths homework, online maths homework, online maths learning, maths learning platform, online maths homework tracking, personalised maths homework, effective maths learning tool, confidence-building maths online, 11-16 year olds maths support"><link rel="stylesheet" href="/_astro/community.D-q1JjDN.css">
+<style>.gradient-button[data-astro-cid-nksxnggv]{--spx-button-contained-color: var(--spx-maths-color-text-on-secondary);--spx-button-contained-color-hover: var(--spx-maths-color-text-on-secondary-hover);--spx-button-contained-background: linear-gradient( 180deg, var(--spx-maths-color-background-secondary) 0%, var(--spx-maths-color-background-secondary-light) 100% );--spx-button-contained-background-hover: linear-gradient( 180deg, var(--spx-maths-color-background-secondary-hover) 0%, var(--spx-maths-color-background-secondary-hover) 100% );box-shadow:0 1px 2px #0003}html .ReactQueryDevtools[data-astro-cid-nksxnggv]{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}html{font-size:16px;-moz-user-select:var(--user-select-accessibility-setting);-ms-user-select:var(--user-select-accessibility-setting);user-select:var(--user-select-accessibility-setting);-webkit-user-select:var(--user-select-accessibility-setting)}html .ReactQueryDevtools{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
+</style>
+<link rel="stylesheet" href="/_astro/index.Cb05L_mK.css">
+<link rel="stylesheet" href="/_astro/baseline-part-one.Bwfe6g76.css">
+<link rel="stylesheet" href="/_astro/community.BObmHI7E.css">
+<link rel="stylesheet" href="/_astro/index.0wUpH3yf.css">
+<style>._Card_1umtl_1{display:grid;grid-template-areas:"logo" "badge" "text" "button";justify-items:start;position:relative;flex:1 0 auto;padding:var(--spx-unit-8);border-radius:var(--spx-radius-md);background-color:var(--colours-curriculum-background-dark)}._Card_1umtl_1 p{margin:0}._Card_1umtl_1 ._Icons_1umtl_20{grid-area:icons;position:absolute;top:calc(-1 * var(--spx-unit-4));right:calc(-1 * var(--spx-unit-4));min-width:210px;justify-self:flex-end}._Card_1umtl_1 ._Logo_1umtl_29{grid-area:logo;margin-top:var(--spx-unit-32);margin-bottom:var(--spx-unit-4)}._Card_1umtl_1 ._Badge_1umtl_35{grid-area:badge;display:inline-block;padding:var(--spx-unit-2);background-color:var(--colours-success);border-radius:var(--spx-radius-sm);line-height:1;-webkit-text-fill-color:initial;color:var(--colours-text-on-success)}._Card_1umtl_1 ._Text_1umtl_45{grid-area:text;margin:var(--spx-unit-4) 0;-webkit-text-fill-color:initial;color:var(--colours-text-light);font-size:var(--spx-font-size-2xl);font-weight:600}._Card_1umtl_1 a{grid-area:button}@media (min-width: 768px){._Card_1umtl_1._Responsive_1umtl_57{grid-template-areas:"badge badge icons" "logo button icons" "text text text"}._Card_1umtl_1._Responsive_1umtl_57 ._Icons_1umtl_20{top:calc(-1 * var(--spx-unit-12));right:calc(-1 * var(--spx-unit-12))}._Card_1umtl_1._Responsive_1umtl_57 ._Logo_1umtl_29{margin:var(--spx-unit-4) 0 0 0}._Card_1umtl_1._Responsive_1umtl_57 ._Badge_1umtl_35{position:absolute;top:calc(-1 * var(--spx-unit-11))}._Card_1umtl_1._Responsive_1umtl_57 ._Text_1umtl_45{margin-bottom:0}._Card_1umtl_1._Responsive_1umtl_57 a{margin-left:var(--spx-unit-4);align-self:end;justify-self:end}}._Card_1umtl_1 ._CurriculumButton_1umtl_90{--spx-button-contained-color: var(--spx-ref-palette-white);--spx-button-contained-color-hover: var(--spx-ref-palette-white);--spx-button-contained-background: linear-gradient( 91deg, rgb(237, 72, 149) .41%, rgb(247, 107, 35) 99.11% );--spx-button-contained-background-hover: linear-gradient( 91deg, rgb(247, 107, 35) .41%, rgb(237, 72, 149) 99.11% )}html{font-size:16px;-moz-user-select:var(--user-select-accessibility-setting);-ms-user-select:var(--user-select-accessibility-setting);user-select:var(--user-select-accessibility-setting);-webkit-user-select:var(--user-select-accessibility-setting)}html ._ReactQueryDevtools_1umtl_1{-webkit-user-select:text;-moz-user-select:text;-ms-user-select:text;user-select:text}
+</style>
+<link rel="stylesheet" href="/_astro/impact.Loa6tCzQ.css">
+<link rel="stylesheet" href="/_astro/index.CxTpnG-X.css">
+<link rel="stylesheet" href="/_astro/register-interest-form.Dmki03S2.css">
+<link rel="stylesheet" href="/_astro/impact.OLWgZ8gu.css">
+<link rel="stylesheet" href="/_astro/Features.EW8sbMbI.css"><script type="module" src="/_astro/hoisted.gPKp6iYs.js"></script></head> <body data-theme="sparxmaths.com" data-astro-cid-sckkx6r4=""> <style>astro-island,astro-slot,astro-static-slot{display:contents}</style><script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).load=e;window.dispatchEvent(new Event("astro:load"));})();;(()=>{var v=Object.defineProperty;var A=(c,s,a)=>s in c?v(c,s,{enumerable:!0,configurable:!0,writable:!0,value:a}):c[s]=a;var d=(c,s,a)=>(A(c,typeof s!="symbol"?s+"":s,a),a);var u;{let c={0:t=>m(t),1:t=>a(t),2:t=>new RegExp(t),3:t=>new Date(t),4:t=>new Map(a(t)),5:t=>new Set(a(t)),6:t=>BigInt(t),7:t=>new URL(t),8:t=>new Uint8Array(t),9:t=>new Uint16Array(t),10:t=>new Uint32Array(t)},s=t=>{let[e,n]=t;return e in c?c[e](n):void 0},a=t=>t.map(s),m=t=>typeof t!="object"||t===null?t:Object.fromEntries(Object.entries(t).map(([e,n])=>[e,s(n)]));customElements.get("astro-island")||customElements.define("astro-island",(u=class extends HTMLElement{constructor(){super(...arguments);d(this,"Component");d(this,"hydrator");d(this,"hydrate",async()=>{var f;if(!this.hydrator||!this.isConnected)return;let e=(f=this.parentElement)==null?void 0:f.closest("astro-island[ssr]");if(e){e.addEventListener("astro:hydrate",this.hydrate,{once:!0});return}let n=this.querySelectorAll("astro-slot"),r={},l=this.querySelectorAll("template[data-astro-template]");for(let o of l){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("data-astro-template")||"default"]=o.innerHTML,o.remove())}for(let o of n){let i=o.closest(this.tagName);i!=null&&i.isSameNode(this)&&(r[o.getAttribute("name")||"default"]=o.innerHTML)}let h;try{h=this.hasAttribute("props")?m(JSON.parse(this.getAttribute("props"))):{}}catch(o){let i=this.getAttribute("component-url")||"<unknown>",b=this.getAttribute("component-export");throw b&&(i+=` (export ${b})`),console.error(`[hydrate] Error parsing props for component ${i}`,this.getAttribute("props"),o),o}let p;await this.hydrator(this)(this.Component,h,r,{client:this.getAttribute("client")}),this.removeAttribute("ssr"),this.dispatchEvent(new CustomEvent("astro:hydrate"))});d(this,"unmount",()=>{this.isConnected||this.dispatchEvent(new CustomEvent("astro:unmount"))})}disconnectedCallback(){document.removeEventListener("astro:after-swap",this.unmount),document.addEventListener("astro:after-swap",this.unmount,{once:!0})}connectedCallback(){if(!this.hasAttribute("await-children")||document.readyState==="interactive"||document.readyState==="complete")this.childrenConnectedCallback();else{let e=()=>{document.removeEventListener("DOMContentLoaded",e),n.disconnect(),this.childrenConnectedCallback()},n=new MutationObserver(()=>{var r;((r=this.lastChild)==null?void 0:r.nodeType)===Node.COMMENT_NODE&&this.lastChild.nodeValue==="astro:end"&&(this.lastChild.remove(),e())});n.observe(this,{childList:!0}),document.addEventListener("DOMContentLoaded",e)}}async childrenConnectedCallback(){let e=this.getAttribute("before-hydration-url");e&&await import(e),this.start()}async start(){let e=JSON.parse(this.getAttribute("opts")),n=this.getAttribute("client");if(Astro[n]===void 0){window.addEventListener(`astro:${n}`,()=>this.start(),{once:!0});return}try{await Astro[n](async()=>{let r=this.getAttribute("renderer-url"),[l,{default:h}]=await Promise.all([import(this.getAttribute("component-url")),r?import(r):()=>()=>{}]),p=this.getAttribute("component-export")||"default";if(!p.includes("."))this.Component=l[p];else{this.Component=l;for(let y of p.split("."))this.Component=this.Component[y]}return this.hydrator=h,this.hydrate},e,this)}catch(r){console.error(`[astro-island] Error hydrating ${this.getAttribute("component-url")}`,r)}}attributeChangedCallback(){this.hydrate()}},d(u,"observedAttributes",["props"]),u))}})();</script><astro-island uid="Z1n7Fqo" prefix="r0" component-url="/_astro/marketing.HSe4ADCe.js" component-export="SparxLearningBanner" renderer-url="/_astro/client.QJzrrbZK.js" props="{&quot;system&quot;:[0,0],&quot;data-astro-cid-sckkx6r4&quot;:[0,true]}" client="load" opts="{&quot;name&quot;:&quot;SparxLearningBanner&quot;,&quot;value&quot;:true}" await-children=""><nav class="_DesktopBannerContainer_xev16_1"><a href="https://sparx-learning.com" target="_blank" rel="noopener" class="_Logo_xev16_44"><img src="/_astro/logo-sparxlearning.Dm9UKH8z.svg" alt="Sparx Learning"></a><ul class="_NavItems_xev16_23"><li class="_HomeButton_xev16_36"><a href="https://sparx-learning.com" target="_blank" rel="noopener">Home</a></li><li><div class="_DropdownButtonContainer_15py4_6"><button class="_DropdownButton_15py4_6">Systems<svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="_ChevronIcon_m2drs_1" data-open="false"><path d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg></button></div></li></ul></nav><nav class="_MobileBannerContainer_xev16_14"><div class="_DropdownButtonContainer_15py4_6"><button class="_DropdownButton_15py4_6"><img src="/_astro/logo-sparxlearning.Dm9UKH8z.svg" alt="Sparx Learning" class="_Logo_c4jfb_31"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="_ChevronIcon_m2drs_1" data-open="false"><path d="M3.13523 6.15803C3.3241 5.95657 3.64052 5.94637 3.84197 6.13523L7.5 9.56464L11.158 6.13523C11.3595 5.94637 11.6759 5.95657 11.8648 6.15803C12.0536 6.35949 12.0434 6.67591 11.842 6.86477L7.84197 10.6148C7.64964 10.7951 7.35036 10.7951 7.15803 10.6148L3.15803 6.86477C2.95657 6.67591 2.94637 6.35949 3.13523 6.15803Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg></button></div></nav></astro-island> <astro-island uid="ZpTqhl" prefix="r1" component-url="/_astro/marketing.HSe4ADCe.js" component-export="Navbar" renderer-url="/_astro/client.QJzrrbZK.js" props="{&quot;title&quot;:[0,&quot;Sparx Maths&quot;],&quot;logoSrc&quot;:[0,&quot;/_astro/sparxmaths.2KqNDegT.svg&quot;],&quot;links&quot;:[1,[[0,{&quot;text&quot;:[0,&quot;Home&quot;],&quot;href&quot;:[0,&quot;/&quot;],&quot;active&quot;:[0,true]}],[0,{&quot;text&quot;:[0,&quot;Impact&quot;],&quot;href&quot;:[0,&quot;/impact&quot;],&quot;active&quot;:[0,false]}],[0,{&quot;text&quot;:[0,&quot;Community&quot;],&quot;href&quot;:[0,&quot;/community&quot;],&quot;active&quot;:[0,false]}],[0,{&quot;text&quot;:[0,&quot;Parents&quot;],&quot;href&quot;:[0,&quot;/parents&quot;],&quot;active&quot;:[0,false]}]]],&quot;teacherLoginUrl&quot;:[0,&quot;https://www.sparxmaths.uk/teacher&quot;],&quot;studentLoginUrl&quot;:[0,&quot;https://www.sparxmaths.uk/student&quot;],&quot;registerInterestPath&quot;:[0,&quot;/book-a-demo&quot;],&quot;showCurriculumLink&quot;:[0,true],&quot;data-astro-cid-sckkx6r4&quot;:[0,true]}" client="load" opts="{&quot;name&quot;:&quot;Navbar&quot;,&quot;value&quot;:true}" await-children=""><div class="_StickyContainer_hhbsr_1"><header class="_Header_hhbsr_7"><a href="/"><img src="/_astro/sparxmaths.2KqNDegT.svg" alt="Sparx Maths" class="_Logo_hhbsr_20"></a><div class="_HiddenAt_gk0gx_1 _Lg_gk0gx_32"><nav class="_Nav_hhbsr_83 _DesktopNav_hhbsr_28"><a class="_Link_hhbsr_90 _Active_hhbsr_137" href="/" tabindex="0">Home</a><a class="_Link_hhbsr_90" href="/impact" tabindex="0">Impact</a><a class="_Link_hhbsr_90" href="/community" tabindex="0">Community</a><a class="_Link_hhbsr_90" href="/parents" tabindex="0">Parents</a><div class="_Divider_hhbsr_127"></div><a class="_CurriculumLink_hhbsr_91" href="https://sparxmathscurriculum.com" target="_blank" tabindex="0">Curriculum <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 13C12.5523 13 13 12.5523 13 12V3C13 2.44771 12.5523 2 12 2H3C2.44771 2 2 2.44771 2 3V6.5C2 6.77614 2.22386 7 2.5 7C2.77614 7 3 6.77614 3 6.5V3H12V12H8.5C8.22386 12 8 12.2239 8 12.5C8 12.7761 8.22386 13 8.5 13H12ZM9 6.5C9 6.5001 9 6.50021 9 6.50031V6.50035V9.5C9 9.77614 8.77614 10 8.5 10C8.22386 10 8 9.77614 8 9.5V7.70711L2.85355 12.8536C2.65829 13.0488 2.34171 13.0488 2.14645 12.8536C1.95118 12.6583 1.95118 12.3417 2.14645 12.1464L7.29289 7H5.5C5.22386 7 5 6.77614 5 6.5C5 6.22386 5.22386 6 5.5 6H8.5C8.56779 6 8.63244 6.01349 8.69139 6.03794C8.74949 6.06198 8.80398 6.09744 8.85143 6.14433C8.94251 6.23434 8.9992 6.35909 8.99999 6.49708L8.99999 6.49738" fill="currentColor"></path></svg></a><a class="_ButtonBase_nt2r3_1 _FocusTarget_1nxry_1 _ButtonMd_nt2r3_35 _ButtonContained_nt2r3_111 _Button_hhbsr_30 _RegisterInterestButton_hhbsr_52 _Button_1ee61_1" tabindex="0" href="/book-a-demo?utm_content=desktop_navbar"><div class="_Content_nt2r3_194">Register interest</div><div class="_RightIcon_nt2r3_61"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" class="svg-inline--fa fa-chevron-right _Icon_1ee61_5" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path></svg></div></a><div class="_LoginMenu_hhbsr_220"><button class="_ButtonBase_nt2r3_1 _FocusTarget_1nxry_1 _ButtonMd_nt2r3_35 _ButtonBlue_nt2r3_76 _ButtonOutlined_nt2r3_129 _Button_hhbsr_30 _ButtonLogin_hhbsr_63" tabindex="0" aria-label="Show Log in options"><div class="_Content_nt2r3_194">Log in</div><div class="_RightIcon_nt2r3_61"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" class="svg-inline--fa fa-chevron-down _Icon_hhbsr_235" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path></svg></div></button></div></nav></div><div class="_HiddenAt_gk0gx_1 _ShownUntil_gk0gx_6 _Lg_gk0gx_32"><div class="_MobileNavContainer_hhbsr_148"><div class="_MobileNav_hhbsr_29"><div class="_HiddenAt_gk0gx_1 _Xs_gk0gx_2"><div class="_LoginMenu_hhbsr_220"><button class="_ButtonBase_nt2r3_1 _FocusTarget_1nxry_1 _ButtonMd_nt2r3_35 _ButtonBlue_nt2r3_76 _ButtonOutlined_nt2r3_129 _Button_hhbsr_30 _ButtonLogin_hhbsr_63" tabindex="0" aria-label="Show Log in options"><div class="_Content_nt2r3_194">Log in</div><div class="_RightIcon_nt2r3_61"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" class="svg-inline--fa fa-chevron-down _Icon_hhbsr_235" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"></path></svg></div></button></div></div><button class="_MenuButton_hhbsr_153" aria-label="Open navigation menu"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" class="_MenuIcon_hhbsr_164"><path d="M1.5 3C1.22386 3 1 3.22386 1 3.5C1 3.77614 1.22386 4 1.5 4H13.5C13.7761 4 14 3.77614 14 3.5C14 3.22386 13.7761 3 13.5 3H1.5ZM1 7.5C1 7.22386 1.22386 7 1.5 7H13.5C13.7761 7 14 7.22386 14 7.5C14 7.77614 13.7761 8 13.5 8H1.5C1.22386 8 1 7.77614 1 7.5ZM1 11.5C1 11.2239 1.22386 11 1.5 11H13.5C13.7761 11 14 11.2239 14 11.5C14 11.7761 13.7761 12 13.5 12H1.5C1.22386 12 1 11.7761 1 11.5Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg></button></div></div></div></header></div></astro-island>  <section class="container" data-astro-cid-mrr2tobg=""> <img class="banner1" src="/_astro/banner-shape-01.CAcD_3ji.png" alt="Banner shape" data-astro-cid-mrr2tobg=""> <div class="content" data-astro-cid-mrr2tobg=""> <div class="title-container" data-astro-cid-mrr2tobg=""> <h1 class="title" data-astro-cid-mrr2tobg="">Building maths confidence through personalised homework</h1> <a class="_ButtonBase_nt2r3_1 _FocusTarget_1nxry_1 _ButtonMd_nt2r3_35 _ButtonContained_nt2r3_111 gradient-button _Button_1ee61_1" tabindex="0" href="/book-a-demo" data-astro-cid-mrr2tobg="true" data-astro-cid-nksxnggv="true"><div class="_Content_nt2r3_194">Get started</div><div class="_RightIcon_nt2r3_61"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" class="svg-inline--fa fa-chevron-right _Icon_1ee61_5" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path></svg></div></a>  </div> <astro-island uid="1Mq7wH" prefix="r2" component-url="/_astro/hero-content-carousel.9jwnqDns.js" component-export="default" renderer-url="/_astro/client.QJzrrbZK.js" props="{&quot;data-astro-cid-mrr2tobg&quot;:[0,true]}" client="load" opts="{&quot;name&quot;:&quot;HeroContentCarousel&quot;,&quot;value&quot;:true}" await-children=""><div class="_VideoContainer_1kaes_1"><div class="_VideoBorder_1kaes_60"><div class="_Video_1kaes_1"><div class="_DummyVideo_1kaes_173"><img class="_BannerShapeLeft_1kaes_185" src="/_astro/banner-shape-01.BFZ5O6OF.png" alt=""><img class="_BannerShapeRight_1kaes_197" src="/_astro/banner-shape-02.D9yFmULX.png" alt=""><button class="_ButtonBase_nt2r3_1 _FocusTarget_1nxry_1 _ButtonMd_nt2r3_35 _ButtonBlue_nt2r3_76 _ButtonContained_nt2r3_111 _PlayButton_1kaes_11" tabindex="0" aria-label="Play"><div class="_Content_nt2r3_194"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6 11L6 4L10.5 7.5L6 11Z" fill="currentColor"></path></svg></div></button><div class="_DummyVideoText_1kaes_209"><img src="/_astro/sparxmaths.CLcQqB-c.svg" alt="Sparx Maths"><p>in 2 minutes</p></div></div></div></div></div></astro-island> <h2 class="subtitle" data-astro-cid-mrr2tobg="">
+Sparx Maths supports <strong data-astro-cid-mrr2tobg="">students aged 11-16</strong> with
+<strong data-astro-cid-mrr2tobg="">personalised,</strong> <strong data-astro-cid-mrr2tobg="">challenging</strong> and <strong data-astro-cid-mrr2tobg="">attainable</strong> homework
+</h2> </div> <img class="banner2" src="/_astro/banner-shape-02.Ddsv4or4.png" alt="Banner shape" data-astro-cid-mrr2tobg=""> </section>  <section data-astro-cid-vziiz7cr=""> <div class="features-container" data-astro-cid-vziiz7cr=""> <script>(()=>{var e=async t=>{await(await t())()};(self.Astro||(self.Astro={})).only=e;window.dispatchEvent(new Event("astro:only"));})();</script><astro-island uid="Z1FFKX5" component-url="/_astro/Features.DoqjhgYK.js" component-export="default" renderer-url="/_astro/client.QJzrrbZK.js" props="{&quot;data-astro-cid-vziiz7cr&quot;:[0,true]}" client="only" opts="{&quot;name&quot;:&quot;Features&quot;,&quot;value&quot;:&quot;react&quot;}"><div class="_FeatureContainer_1homi_1"><div class="_ButtonContainer_1homi_7"><button class="_Button_1homi_7 _Active_1homi_35"><span class="_Title_1homi_39">Personalisation</span><span class="_Description_1homi_52">1 hour of personalised homework per week is proven to improve grades.</span></button><button class="_Button_1homi_7"><span class="_Title_1homi_39">Content</span><span class="_Description_1homi_52">Rigorously designed content to promote flow and intelligent practice.</span></button><button class="_Button_1homi_7"><span class="_Title_1homi_39">Pedagogical Innovations</span><span class="_Description_1homi_52">Ensure that the quantity and quality of student practice are always being optimised.</span></button><button class="_Button_1homi_7"><span class="_Title_1homi_39">Automation</span><span class="_Description_1homi_52">To ensure students get consistently high-quality homework whilst saving teachers precious time.</span></button><button class="_Button_1homi_7"><span class="_Title_1homi_39">Collaboration</span><span class="_Description_1homi_52">A supportive and collaborative approach with our schools, teachers, parents and students to ensure we make a positive and meaningful difference.</span></button></div><div class="_FeaturePanel_1homi_93"><img src="/_astro/personalisation.DCvX0YG8.png" alt="Image of the Sparx Maths student homepage showing a list of homework packages"><h3>Personalisation</h3><div class="_FeatureContent_1homi_127"><p>Sparx Maths creates an hour's worth of <strong>perfectly tailored</strong> practice homework for each student each week driven by your school’s scheme of learning.</p><p>The practice is <strong>challenging</strong>, to ensure students need to think and, crucially, <strong>achievable</strong> so that students can be successful.</p><p>We also ensure the practice uses spaced repetition and interleaving to support a change in students' long-term memories.</p><p>We are proud that Sparx Maths is inclusive and can adapt to all students' current level of expertise. This promotes <strong>engagement, confidence</strong> and ultimately <strong>learning</strong>.</p></div><div class="_NavigationButtons_1homi_253"><button tabindex="0" aria-label="Previous"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.14645 2.14645C7.34171 1.95118 7.65829 1.95118 7.85355 2.14645L11.8536 6.14645C12.0488 6.34171 12.0488 6.65829 11.8536 6.85355C11.6583 7.04882 11.3417 7.04882 11.1464 6.85355L8 3.70711L8 12.5C8 12.7761 7.77614 13 7.5 13C7.22386 13 7 12.7761 7 12.5L7 3.70711L3.85355 6.85355C3.65829 7.04882 3.34171 7.04882 3.14645 6.85355C2.95118 6.65829 2.95118 6.34171 3.14645 6.14645L7.14645 2.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg> Previous</button><button tabindex="0" aria-label="Next">Next <svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7.5 2C7.77614 2 8 2.22386 8 2.5L8 11.2929L11.1464 8.14645C11.3417 7.95118 11.6583 7.95118 11.8536 8.14645C12.0488 8.34171 12.0488 8.65829 11.8536 8.85355L7.85355 12.8536C7.75979 12.9473 7.63261 13 7.5 13C7.36739 13 7.24021 12.9473 7.14645 12.8536L3.14645 8.85355C2.95118 8.65829 2.95118 8.34171 3.14645 8.14645C3.34171 7.95118 3.65829 7.95118 3.85355 8.14645L7 11.2929L7 2.5C7 2.22386 7.22386 2 7.5 2Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg></button></div></div></div></astro-island> </div> </section>  <div class="container" data-astro-cid-7tqrxxhe=""> <div class="content" data-astro-cid-7tqrxxhe=""> <img src="/_astro/ribbon.CuRS6Lw7.svg" alt="ribbon" data-astro-cid-7tqrxxhe=""> <span data-astro-cid-7tqrxxhe="">Sparx Maths is proven by The University of Cambridge to significantly boost grades</span> </div> </div>  <script>(()=>{var l=(s,i,o)=>{let r=async()=>{await(await s())()},t=typeof i.value=="object"?i.value:void 0,c={rootMargin:t==null?void 0:t.rootMargin},n=new IntersectionObserver(e=>{for(let a of e)if(a.isIntersecting){n.disconnect(),r();break}},c);for(let e of o.children)n.observe(e)};(self.Astro||(self.Astro={})).visible=l;window.dispatchEvent(new Event("astro:visible"));})();</script><div class="_Container_1or6v_86"><div class="_Content_1or6v_96"><h3 class="_SectionTitle_1or6v_101">Our community</h3><p class="_SectionSubtitle_1or6v_112">Sparx Maths in numbers</p> <div class="_Cards_1or6v_75"> <div class="_Card_1or6v_40 _First_1or6v_1"><div><p class="_Title_1or6v_49">2 billion+</p><p class="_Subtitle_1or6v_60">high quality questions answered</p></div></div> <div class="_Card_1or6v_40 _Second_1or6v_7"> <img src="/_astro/img-devices.D6XhlkfM.png" alt="Multiple different devices running Sparx Maths"> <div><p class="_Title_1or6v_49">29 million+</p><p class="_Subtitle_1or6v_60">hours of personalised learning completed</p></div></div> <div class="_Card_1or6v_40 _Third_1or6v_32"><div><p class="_Title_1or6v_49">2 million+</p><p class="_Subtitle_1or6v_60">students aged 11-16 supported</p></div></div> </div> <astro-island uid="1GW1un" prefix="r5" component-url="/_astro/marketing.HSe4ADCe.js" component-export="WhatOurSchoolsSay" renderer-url="/_astro/client.QJzrrbZK.js" props="{&quot;content&quot;:[1,[[0,{&quot;logo&quot;:[0,{&quot;src&quot;:[0,&quot;/_astro/SDCC.DW64CPkA.png&quot;],&quot;alt&quot;:[0,&quot;South Dartmoor Community College Logo&quot;]}],&quot;body&quot;:[1,[[0,&quot;Using Sparx Maths Homework has completely changed our homework culture; more and more of our students now have a positive attitude towards homework which is amazing.&quot;]]],&quot;name&quot;:[0,&quot;Katie Holt&quot;],&quot;role&quot;:[0,&quot;Head of Maths&quot;],&quot;school&quot;:[0,&quot;South Dartmoor Community College&quot;]}],[0,{&quot;logo&quot;:[0,{&quot;src&quot;:[0,&quot;/_astro/SJF.DdsPKT3X.png&quot;],&quot;alt&quot;:[0,&quot;St John Fisher Catholic College Logo&quot;]}],&quot;body&quot;:[1,[[0,&quot;Feedback from students, parents and staff is better than any platform we’ve ever used. Students see the direct impact of the effort they put in in lessons because it’s aligned perfectly to our scheme of work. We love Sparx.&quot;]]],&quot;name&quot;:[0,&quot;Charlotte Hawthorne&quot;],&quot;role&quot;:[0,&quot;Lead Practitioner&quot;],&quot;school&quot;:[0,&quot;St John Fisher Catholic College&quot;],&quot;additionalMessage&quot;:[0,&quot;Great feedback from students, parents and staff!&quot;]}],[0,{&quot;logo&quot;:[0,{&quot;src&quot;:[0,&quot;/_astro/KSA.2bzV7CFC.png&quot;],&quot;alt&quot;:[0,&quot;Kettering Science Academy Logo&quot;]}],&quot;body&quot;:[1,[[0,&quot;We love that all are suitably challenged, consolidation is built in every week, instant communication with parents, easy to align with scheme of work and the insights tabs are gold for giving feedback!&quot;]]],&quot;name&quot;:[0,&quot;Grace Horne&quot;],&quot;role&quot;:[0,&quot;Assistant Principal&quot;],&quot;school&quot;:[0,&quot;Kettering Science Academy&quot;]}],[0,{&quot;logo&quot;:[0,{&quot;src&quot;:[0,&quot;/_astro/OA.DuQnNg6p.png&quot;],&quot;alt&quot;:[0,&quot;The Oldham Academy North Logo&quot;]}],&quot;body&quot;:[1,[[0,&quot;We love Sparx Maths - high completion rates, accountability for students, useful ‘insights’ to address common weaknesses, less workload for staff, questions are specifically targeted and the students really buy in as they can now see a purpose beyond ‘extra stuff’ they are forced into&quot;]]],&quot;name&quot;:[0,&quot;Stephanie Gunn&quot;],&quot;role&quot;:[0,&quot;Maths Teacher&quot;],&quot;school&quot;:[0,&quot;The Oldham Academy North&quot;],&quot;additionalMessage&quot;:[0,&quot;Amazing completion rates!&quot;]}],[0,{&quot;logo&quot;:[0,{&quot;src&quot;:[0,&quot;/_astro/CA.BCLVZTQ8.png&quot;],&quot;alt&quot;:[0,&quot;Coombeshead Academy Logo&quot;]}],&quot;body&quot;:[1,[[0,&quot;Sparx has completely changed the homework culture within our school (for the better!). We have students doing homework who would never normally have done homework before because they enjoy using Sparx and are motivated to do well. It’s a grade changer for students and teachers!&quot;]]],&quot;name&quot;:[0,&quot;Joanna Williams&quot;],&quot;role&quot;:[0,&quot;Deputy Head of Maths&quot;],&quot;school&quot;:[0,&quot;Coombeshead Academy&quot;],&quot;additionalMessage&quot;:[0,&quot;A change in homework culture for the better!&quot;]}],[0,{&quot;logo&quot;:[0,{&quot;src&quot;:[0,&quot;/_astro/WA.BGZ-K-Op.png&quot;],&quot;alt&quot;:[0,&quot;Wednesfield Academy Logo&quot;]}],&quot;body&quot;:[1,[[0,&quot;Sparx is the next best thing to me visiting every one of my students during the evening to give them 1 to 1 support. It does what is impossible for me to do.&quot;]]],&quot;role&quot;:[0,&quot;Maths Teacher&quot;],&quot;school&quot;:[0,&quot;Wednesfield Academy&quot;]}]]],&quot;eventString&quot;:[0,&quot;what_our_schools_say_home&quot;]}" client="load" opts="{&quot;name&quot;:&quot;WhatOurSchoolsSay&quot;,&quot;value&quot;:true}" await-children=""><div class="_Container_14o67_1"><p class="_Title_14o67_5">What our schools say</p><div class="_MobileCarouselContainer_14o67_111"><div class="_MobileHeader_14o67_119"><button class="_DirectionButton_14o67_13" aria-label="Previous quote"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.84182 3.13514C9.04327 3.32401 9.05348 3.64042 8.86462 3.84188L5.43521 7.49991L8.86462 11.1579C9.05348 11.3594 9.04327 11.6758 8.84182 11.8647C8.64036 12.0535 8.32394 12.0433 8.13508 11.8419L4.38508 7.84188C4.20477 7.64955 4.20477 7.35027 4.38508 7.15794L8.13508 3.15794C8.32394 2.95648 8.64036 2.94628 8.84182 3.13514Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg></button><div class="_MobileCarouselImage_14o67_125"><img src="/_astro/SDCC.DW64CPkA.png" alt="/_astro/SDCC.DW64CPkA.png"></div><button class="_DirectionButton_14o67_13" aria-label="Next quote"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg></button></div><p class="_BodyText_14o67_73">Using Sparx Maths Homework has completely changed our homework culture; more and more of our students now have a positive attitude towards homework which is amazing.</p><div><p class="_Name_14o67_63">Katie Holt</p><p class="_Role_14o67_94">Head of Maths<!-- --> - <!-- -->South Dartmoor Community College</p></div></div><div class="_CarouselContainer_14o67_25"><button class="_DirectionButton_14o67_13" aria-label="Previous quote"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.84182 3.13514C9.04327 3.32401 9.05348 3.64042 8.86462 3.84188L5.43521 7.49991L8.86462 11.1579C9.05348 11.3594 9.04327 11.6758 8.84182 11.8647C8.64036 12.0535 8.32394 12.0433 8.13508 11.8419L4.38508 7.84188C4.20477 7.64955 4.20477 7.35027 4.38508 7.15794L8.13508 3.15794C8.32394 2.95648 8.64036 2.94628 8.84182 3.13514Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg></button><div class="_CarouselContent_14o67_35"><img class="_CarouselImage_14o67_47" src="/_astro/SDCC.DW64CPkA.png" alt="South Dartmoor Community College Logo"><div class="_CarouselQuote_14o67_53"><img class="_Quotes_14o67_68" src="/_astro/quote.DnR_07n8.svg" alt=""><div class="_CarouselText_14o67_42"><p class="_BodyText_14o67_73">Using Sparx Maths Homework has completely changed our homework culture; more and more of our students now have a positive attitude towards homework which is amazing.</p><div class="_Footer_14o67_105"><div><p class="_Name_14o67_63">Katie Holt</p><p class="_Role_14o67_94">Head of Maths<!-- --> - <!-- -->South Dartmoor Community College</p></div></div></div></div></div><button class="_DirectionButton_14o67_13" aria-label="Next quote"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg></button></div></div></astro-island>  <astro-island uid="Z1FY46i" prefix="r6" component-url="/_astro/marketing.HSe4ADCe.js" component-export="SocialBuzz" renderer-url="/_astro/client.QJzrrbZK.js" props="{&quot;content&quot;:[1,[[0,{&quot;imgSrc&quot;:[0,&quot;/_astro/GA.BmWtYJ6_.png&quot;],&quot;name&quot;:[0,&quot;Granville Academy&quot;],&quot;handle&quot;:[0,&quot;Granville_dft&quot;],&quot;body&quot;:[1,[[0,&quot;Congratulations to our #Sparx Maths Superstars, 9Y3! For showing the biggest improvement for completing homework. As a school, the students have answered 532,843 questions correctly &amp; 255 students have improved their times tables. Well done all! @SparxMaths @deferrerstrust&quot;]]]}],[0,{&quot;imgSrc&quot;:[0,&quot;/_astro/DLA.B3VYEcP7.png&quot;],&quot;name&quot;:[0,&quot;The Laurel Academy&quot;],&quot;handle&quot;:[0,&quot;DeltaTheLaurel&quot;],&quot;body&quot;:[1,[[0,&quot;#TeamTLA Well done Year 11 for showing dedication to @SparxMaths doing a bit of lunch time revision. #smashingmaths&quot;]]],&quot;extraImgSrc&quot;:[0,&quot;/_astro/studentsworking01.Xh00T3_c.png&quot;]}],[0,{&quot;imgSrc&quot;:[0,&quot;/_astro/SWA.BymAHg3y.png&quot;],&quot;name&quot;:[0,&quot;Stamford Welland Academy&quot;],&quot;handle&quot;:[0,&quot;stamfordwelland&quot;],&quot;body&quot;:[1,[[0,&quot;Our @SparxMaths Superhero this week is... Jack K! Jack has not only been consistent in getting his homework completed every week but he has also used the platform to complete some independent revision during the mock exams. This has been reflected in a fantastic mock result!&quot;]]]}]]]}" ssr="" client="visible" opts="{&quot;name&quot;:&quot;SocialBuzz&quot;,&quot;value&quot;:true}" await-children=""><div class="_Container_1pcao_1"><p class="_Title_1pcao_10">Social buzz</p><div class="_Cards_1pcao_18"><div><div class="_PersonalInfo_1pcao_24"><img src="/_astro/GA.BmWtYJ6_.png" alt="Granville Academy"><div class="_Name_1pcao_39"><span>Granville Academy</span><span>@<!-- -->Granville_dft</span></div></div><p class="_Text_1pcao_47">Congratulations to our #Sparx Maths Superstars, 9Y3! For showing the biggest improvement for completing homework. As a school, the students have answered 532,843 questions correctly &amp; 255 students have improved their times tables. Well done all! @SparxMaths @deferrerstrust</p></div><div><div class="_PersonalInfo_1pcao_24"><img src="/_astro/DLA.B3VYEcP7.png" alt="The Laurel Academy"><div class="_Name_1pcao_39"><span>The Laurel Academy</span><span>@<!-- -->DeltaTheLaurel</span></div></div><p class="_Text_1pcao_47">#TeamTLA Well done Year 11 for showing dedication to @SparxMaths doing a bit of lunch time revision. #smashingmaths</p><img class="_ExtraImg_1pcao_52" src="/_astro/studentsworking01.Xh00T3_c.png" alt="The Laurel Academy"></div><div><div class="_PersonalInfo_1pcao_24"><img src="/_astro/SWA.BymAHg3y.png" alt="Stamford Welland Academy"><div class="_Name_1pcao_39"><span>Stamford Welland Academy</span><span>@<!-- -->stamfordwelland</span></div></div><p class="_Text_1pcao_47">Our @SparxMaths Superhero this week is... Jack K! Jack has not only been consistent in getting his homework completed every week but he has also used the platform to complete some independent revision during the mock exams. This has been reflected in a fantastic mock result!</p></div></div></div></astro-island> <astro-island uid="GJ9ii" prefix="r7" component-url="/_astro/marketing.HSe4ADCe.js" component-export="SocialBuzzCarousel" renderer-url="/_astro/client.QJzrrbZK.js" props="{&quot;content&quot;:[1,[[0,{&quot;imgSrc&quot;:[0,&quot;/_astro/GA.BmWtYJ6_.png&quot;],&quot;name&quot;:[0,&quot;Granville Academy&quot;],&quot;handle&quot;:[0,&quot;Granville_dft&quot;],&quot;body&quot;:[1,[[0,&quot;Congratulations to our #Sparx Maths Superstars, 9Y3! For showing the biggest improvement for completing homework. As a school, the students have answered 532,843 questions correctly &amp; 255 students have improved their times tables. Well done all! @SparxMaths @deferrerstrust&quot;]]]}],[0,{&quot;imgSrc&quot;:[0,&quot;/_astro/DLA.B3VYEcP7.png&quot;],&quot;name&quot;:[0,&quot;The Laurel Academy&quot;],&quot;handle&quot;:[0,&quot;DeltaTheLaurel&quot;],&quot;body&quot;:[1,[[0,&quot;#TeamTLA Well done Year 11 for showing dedication to @SparxMaths doing a bit of lunch time revision. #smashingmaths&quot;]]],&quot;extraImgSrc&quot;:[0,&quot;/_astro/studentsworking01.Xh00T3_c.png&quot;]}],[0,{&quot;imgSrc&quot;:[0,&quot;/_astro/SWA.BymAHg3y.png&quot;],&quot;name&quot;:[0,&quot;Stamford Welland Academy&quot;],&quot;handle&quot;:[0,&quot;stamfordwelland&quot;],&quot;body&quot;:[1,[[0,&quot;Our @SparxMaths Superhero this week is... Jack K! Jack has not only been consistent in getting his homework completed every week but he has also used the platform to complete some independent revision during the mock exams. This has been reflected in a fantastic mock result!&quot;]]]}]]]}" ssr="" client="visible" opts="{&quot;name&quot;:&quot;SocialBuzzCarousel&quot;,&quot;value&quot;:true}" await-children=""><div class="_CarouselContainer_1pcao_58"><p class="_Title_1pcao_10">Social buzz</p><div class="_Carousel_1pcao_58"><button class="_DirectionButton_1pcao_76" aria-label="Previous post"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M8.84182 3.13514C9.04327 3.32401 9.05348 3.64042 8.86462 3.84188L5.43521 7.49991L8.86462 11.1579C9.05348 11.3594 9.04327 11.6758 8.84182 11.8647C8.64036 12.0535 8.32394 12.0433 8.13508 11.8419L4.38508 7.84188C4.20477 7.64955 4.20477 7.35027 4.38508 7.15794L8.13508 3.15794C8.32394 2.95648 8.64036 2.94628 8.84182 3.13514Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg></button><div class="_PersonalInfo_1pcao_24"><img src="/_astro/GA.BmWtYJ6_.png" alt="Granville Academy"><div class="_Name_1pcao_39"><span>Granville Academy</span><span>@<!-- -->Granville_dft</span></div></div><button class="_DirectionButton_1pcao_76" aria-label="Next post"><svg width="15" height="15" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg></button></div><div class="_Content_1pcao_72"><p class="_Text_1pcao_47">Congratulations to our #Sparx Maths Superstars, 9Y3! For showing the biggest improvement for completing homework. As a school, the students have answered 532,843 questions correctly &amp; 255 students have improved their times tables. Well done all! @SparxMaths @deferrerstrust</p></div></div></astro-island> </div></div> <astro-island uid="Zd3adR" prefix="r8" component-url="/_astro/marketing.HSe4ADCe.js" component-export="MapSection" renderer-url="/_astro/client.QJzrrbZK.js" props="{&quot;system&quot;:[0,0]}" client="load" opts="{&quot;name&quot;:&quot;MapSection&quot;,&quot;value&quot;:true}" await-children=""><div class="_container_b2s2k_1"><div class="_content_b2s2k_11"><div class="_header_b2s2k_16"><img src="/_astro/logo.D0DowiMU.png" alt="Sparx Learning"><a class="_ButtonBase_nt2r3_1 _FocusTarget_1nxry_1 _ButtonMd_nt2r3_35 _ButtonOutlined_nt2r3_129 _visit-button_b2s2k_75 _Button_1ee61_1" tabindex="0" href="https://sparx-learning.com" target="_blank"><div class="_Content_nt2r3_194">Visit<!-- --> <span class="_HiddenAt_gk0gx_1 _Sm_gk0gx_12">Sparx Learning</span></div><div class="_RightIcon_nt2r3_61"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" class="svg-inline--fa fa-chevron-right _Icon_1ee61_5" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path></svg></div></a></div><p class="_text_b2s2k_33">Sparx Learning provides<!-- --> <strong>maths</strong>, <a href="https://sparxreader.com/?connection=4f2733d3-065a-4067-b90a-d3db5dea8e4e" target="_blank">reading</a> <!-- -->and<!-- --> <a href="https://sparxscience.com/?connection=4f2733d3-065a-4067-b90a-d3db5dea8e4e" target="_blank">science</a> <!-- -->solutions to more than half of UK schools, supporting students aged 11-16yrs across several large International School Groups and many individual schools across the world.</p><div class="_map-container_b2s2k_46"><div class="_count_b2s2k_84"><span class="_stat_b2s2k_89">2m+</span><span class="_title_b2s2k_95">Students</span></div><div class="_count_b2s2k_84"><span class="_stat_b2s2k_89">36k+</span><span class="_title_b2s2k_95">Teachers</span></div><div class="_count_b2s2k_84"><span class="_stat_b2s2k_89">2,200+</span><span class="_title_b2s2k_95">Schools</span></div><img class="_map_b2s2k_46" src="/_astro/map.D7qxsR3d.png" alt="Map of the world with points showing all the different countries Sparx Maths is used in. These countries include: Australia, Belgium, Chile, Colombia, Costa Rica, Denmark, Ecuador, Egypt, Hungary, Ireland, Italy, Malaysia, Mexico, Myanmar, Oman, Peru, South Africa, Spain, Switzerland, UAE, United Kingdom, United States, and Vietnam"></div><p class="_school-groups-text_b2s2k_131">School groups we work with</p><div class="_Container_13w8g_7"><div class="_SchoolGroupsContainer_13w8g_11"><div class="_SchoolGroups_13w8g_11"><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/TWT.CrcdOO6l.png" alt="Tedd Wragg Trust"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/ISP.BwPOohmE.png" alt="International Schools Partnership"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/UL.BvyXXhmy.png" alt="United Learning"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/IES.CM5pM99S.png" alt="International Education Systems"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/GLT.B7kD8Gif.png" alt="Greenshaw Learning Trust"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/Delta.Cq-3jik6.png" alt="Delta Academies Trust"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/Athelstan.Qk9WBrCW.png" alt="The Athelstan Trust"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/Consilium.CbdDupOE.png" alt="Consillium Academies"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/SA.DTRdNrig.png" alt="Star Academies"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/GLF.D9F23iXq.png" alt="GLF Teaching School Aliance"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/AET.Dzg2AoD4.png" alt="Academies Enterprise Trust"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/SAT.pSOdnUmi.png" alt="Spencer Academies Trust"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/Ark.CnVjrbNg.png" alt="Ark"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/BWT.Cguwc439.png" alt="Brooke Western Academy Trust"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/IET.DATNmta_.png" alt="Invictus Education Trust"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/SET.Bv2xIt0v.png" alt="Shaw Academy Trust"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/Dudley.DP_tTBUg.png" alt="Dudley Academies Trust"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/Westcountry.BL7zTO88.png" alt="Westcountry Schools Trust"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/LAT.B_0L1m5S.png" alt="Leigh Academies Trust"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/Chorus.FcGjfa-j.png" alt="Chorus Education Trust"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/SV.DE86mM7R.png" alt="Stour Vale Academies Trust"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/TWT.CrcdOO6l.png" alt="Tedd Wragg Trust"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/ISP.BwPOohmE.png" alt="International Schools Partnership"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/UL.BvyXXhmy.png" alt="United Learning"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/IES.CM5pM99S.png" alt="International Education Systems"></div><div class="_Slide_13w8g_26" style="transform: translateX(-3520px) translateZ(0px);"><img src="/_astro/GLT.B7kD8Gif.png" alt="Greenshaw Learning Trust"></div></div></div></div></div></div></astro-island> <section data-astro-cid-xrdsuym4=""> <article class="whats-new" data-astro-cid-xrdsuym4=""> <h2 class="heading" data-astro-cid-xrdsuym4="">What's new?</h2> <div class="card-container" data-astro-cid-xrdsuym4=""> <div class="card" data-astro-cid-xrdsuym4=""> <div class="preview-image" data-astro-cid-xrdsuym4=""> <img src="../images/blog/baseline-pt2/baseline2_16.png" alt="" data-astro-cid-xrdsuym4=""> </div> <div class="content" data-astro-cid-xrdsuym4=""> <p data-astro-cid-xrdsuym4="">Baseline Assessment - Part Two</p> <p data-astro-cid-xrdsuym4="">Y7 Sparx Maths Baseline Assessment - National results and insights</p> <a data-interaction-action="click baseline assessment part two link" data-interaction-category="home-page" href="/blog/baseline-part-two" data-astro-cid-xrdsuym4="">
+Read more...
+</a> </div> </div> <hr data-astro-cid-xrdsuym4=""> <div class="card" data-astro-cid-xrdsuym4=""> <div class="preview-image" data-astro-cid-xrdsuym4=""> <img src="../images/blog/mtt/SST-group.jpg" alt="" data-astro-cid-xrdsuym4=""> </div> <div class="content" data-astro-cid-xrdsuym4=""> <p data-astro-cid-xrdsuym4="">Meet the team - SST</p> <p data-astro-cid-xrdsuym4="">Meet the members of the School Success Team</p> <a data-interaction-action="click meet the team sst link" data-interaction-category="home-page" href="/blog/meet-the-team-sst" data-astro-cid-xrdsuym4="">Read more...</a> </div> </div> <hr data-astro-cid-xrdsuym4=""> <div class="card" data-astro-cid-xrdsuym4=""> <div class="preview-image" data-astro-cid-xrdsuym4=""> <img src="../images/blog/baseline/baseline01.png" alt="" data-astro-cid-xrdsuym4=""> </div> <div class="content" data-astro-cid-xrdsuym4=""> <p data-astro-cid-xrdsuym4="">Baseline Assessment - Part One</p> <p data-astro-cid-xrdsuym4="">A look back at our Baseline Assessment package</p> <a data-interaction-action="click baseline assessment part one link" data-interaction-category="home-page" href="/blog/baseline-part-one" data-astro-cid-xrdsuym4="">Read more...</a> </div> </div> </div> </article> <article class="latest-features" data-astro-cid-xrdsuym4=""> <astro-island uid="ZM0wIl" prefix="r9" component-url="/_astro/LatestFeatures.C8vhpq9x.js" component-export="default" renderer-url="/_astro/client.QJzrrbZK.js" props="{&quot;data-astro-cid-xrdsuym4&quot;:[0,true]}" client="load" opts="{&quot;name&quot;:&quot;LatestFeatures&quot;,&quot;value&quot;:true}" await-children=""><div class="_Heading_12yqw_1"><h2 class="_Title_12yqw_7">Latest features</h2><div class="_Controls_12yqw_12"><button aria-label="Previous" tabindex="0"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-left" class="svg-inline--fa fa-chevron-left " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"></path></svg></button><button aria-label="Next" tabindex="0"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" class="svg-inline--fa fa-chevron-right " role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path></svg></button></div></div><div><div class="_Card_1umtl_1"><img class="_Icons_1umtl_20" src="/_astro/curriculum-icons.DGmthkwC.png" alt=""><img class="_Logo_1umtl_29" src="/_astro/curriculum-logo-stacked.CqIbDDs8.svg" alt="Curriculum"><p class="_Badge_1umtl_35">COMPLETELY FREE FOR ANY SCHOOL</p><p class="_Text_1umtl_45">An intelligently sequenced 5 year maths curriculum for Y7 to Y11</p><a class="_ButtonBase_nt2r3_1 _FocusTarget_1nxry_1 _ButtonMd_nt2r3_35 _ButtonContained_nt2r3_111 _CurriculumButton_1umtl_90 _Button_1ee61_1" tabindex="0" href="https://sparxmathscurriculum.com" target="_blank"><div class="_Content_nt2r3_194">View the Curriculum</div><div class="_RightIcon_nt2r3_61"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" class="svg-inline--fa fa-chevron-right _Icon_1ee61_5" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path></svg></div></a></div></div></astro-island> </article> </section>   <section class="journey" data-astro-cid-sckkx6r4=""> <img class="bannershape-left" src="/_astro/banner-shape-01.DXCUc-P3.png" alt="" data-astro-cid-sckkx6r4=""> <img class="bannershape-right" src="/_astro/banner-shape-02.DKogG4dc.png" alt="" data-astro-cid-sckkx6r4=""> <div class="journey-content" data-astro-cid-sckkx6r4=""> <p data-astro-cid-sckkx6r4="">Start your journey with Sparx Maths today</p> <a class="_ButtonBase_nt2r3_1 _FocusTarget_1nxry_1 _ButtonMd_nt2r3_35 _ButtonContained_nt2r3_111 gradient-button _Button_1ee61_1" tabindex="0" href="/book-a-demo" data-astro-cid-sckkx6r4="true" data-astro-cid-nksxnggv="true"><div class="_Content_nt2r3_194">Get started</div><div class="_RightIcon_nt2r3_61"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" class="svg-inline--fa fa-chevron-right _Icon_1ee61_5" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"></path></svg></div></a>  </div> </section> <footer class="_Footer_12bcv_1"><div class="_Container_12bcv_6"> <div class="_List_12bcv_19"><p>Sparx Maths</p> <a href="/" data-interaction-category="footer" data-interaction-action="click home">Home</a> <a href="/impact" data-interaction-category="footer" data-interaction-action="click impact">Impact</a> <a href="/community" data-interaction-category="footer" data-interaction-action="click community">Community</a> <a href="https://sparxmathscurriculum.com" data-interaction-category="footer" data-interaction-action="click curriculum">Curriculum</a> <a href="/book-a-demo" data-interaction-category="footer" data-interaction-action="click register interest">Register interest</a> <a href="https://welcome.sparxmaths.uk" data-interaction-category="footer" data-interaction-action="click log in">Log in</a> </div> <div class="_List_12bcv_19"><p>About us</p> <a href="https://cdn.document360.io/2bee100a-a9af-4313-a064-74c31f5b0420/Images/Documentation/Company%20Information%20.pdf" data-interaction-category="footer" data-interaction-action="click company information">
+Company Information
+</a> <a href="https://cdn.document360.io/2bee100a-a9af-4313-a064-74c31f5b0420/Images/Documentation/Security-information-for-schools-3.pdf" data-interaction-category="footer" data-interaction-action="click security information">
+Security Information
+</a> <a href="https://cdn.document360.io/2bee100a-a9af-4313-a064-74c31f5b0420/Images/Documentation/Support%20companies%20that%20Sparx%20shares%20personal%20information%20with.pdf" data-interaction-category="footer" data-interaction-action="click support companies">
+Support Companies
+</a> <a href="https://sparx-learning.com/terms-of-use/" data-interaction-category="footer" data-interaction-action="click website terms of use">
+Website Terms of Use
+</a> <a href="https://cdn.document360.io/2bee100a-a9af-4313-a064-74c31f5b0420/Images/Documentation/Sparx-Maths-Terms-and-Conditions-.pdf" data-interaction-category="footer" data-interaction-action="click sparx maths terms and conditions">
+Sparx Maths Terms and Conditions
+</a> <a href="https://cdn.document360.io/2bee100a-a9af-4313-a064-74c31f5b0420/Images/Documentation/Sparx%20Learning%20-%20Privacy%20Policy%20for%20Schools.pdf" data-interaction-category="footer" data-interaction-action="click sparx maths privacy notice">
+Sparx Maths Privacy Notice
+</a> <a href="https://sparx-learning.com/privacy-policy/" data-interaction-category="footer" data-interaction-action="click website privacy policy">
+Website Privacy Policy
+</a> </div> <div class="_List_12bcv_19"><p>Contact us</p><a href="tel:+44 (0)20 3920 0020" tabindex="0">+44 (0)20 3920 0020</a><a href="mailto:contact@sparx.co.uk" tabindex="0">contact@sparx.co.uk</a><a href="mailto:recruitmentteam@sparx.co.uk" tabindex="0">recruitmentteam@sparx.co.uk</a><div class="_Socials_12bcv_50"><a href="https://twitter.com/sparxlearning" aria-label="X (formerly Twitter)" data-interaction-category="footer" data-interaction-action="click twitter link"><svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34"><path fill-rule="evenodd" clip-rule="evenodd" d="M16.9752 34.0012C26.3504 34.0012 33.9504 26.4011 33.9504 17.026C33.9504 7.65084 26.3504 0.0507812 16.9752 0.0507812C7.60006 0.0507812 0 7.65084 0 17.026C0 26.4011 7.60006 34.0012 16.9752 34.0012ZM24.931 8.53906L18.8546 15.7232H18.8543L25.4629 25.5056H20.6026L16.1523 18.9181L10.5806 25.5056H9.14062L15.513 17.9719L9.14062 8.53906H14.001L18.215 14.777L23.4911 8.53906H24.931ZM16.2367 17.1157L16.8824 18.055V18.0553L21.28 24.4531H23.4917L18.1027 16.6127L17.457 15.6734L13.3112 9.64161H11.0995L16.2367 17.1157Z"></path></svg></a><a href="https://www.linkedin.com/company/sparx-learning/" aria-label="LinkedIn" data-interaction-category="footer" data-interaction-action="click linkedin link"><svg xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 34 34"><g clip-path="url(#clip0_547_8147)"><path fill-rule="evenodd" clip-rule="evenodd" d="M17 0C26.3825 0 34 7.61746 34 17C34 26.3825 26.3825 34 17 34C7.61746 34 0 26.3825 0 17C0 7.61746 7.61746 0 17 0ZM11.685 26.5539V13.2779H7.27142V26.5539H11.685ZM27.5973 26.5539V18.9407C27.5973 14.8628 25.42 12.9658 22.5166 12.9658C20.1755 12.9658 19.1268 14.2533 18.5396 15.1576V13.2779H14.1271C14.1856 14.5235 14.1271 26.5539 14.1271 26.5539H18.5396V19.1397C18.5396 18.7428 18.5681 18.3461 18.6851 18.0625C19.0035 17.2699 19.7301 16.4489 20.9492 16.4489C22.5452 16.4489 23.1846 17.6668 23.1846 19.4507V26.5539H27.5973ZM9.50805 6.87637C7.99797 6.87637 7.01137 7.86914 7.01137 9.17037C7.01137 10.4442 7.96795 11.4643 9.44961 11.4643H9.4781C11.0171 11.4643 11.975 10.4442 11.975 9.17037C11.9464 7.86914 11.0171 6.87637 9.50805 6.87637Z"></path></g><defs><clipPath id="clip0_547_8147"><rect width="34" height="34"></rect></clipPath></defs></svg></a></div></div></div></footer>  <!-- Cloudflare Pages Analytics --><script defer="" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;token&quot;: &quot;53b86b01c8d841cfa4d08c4f5c933162&quot;}"></script><!-- Cloudflare Pages Analytics --> 
+    <style data-type="cookiescriptstyles">
+      #cookiescript_injected {
+    background-color: #1C1C1C;
+    z-index: 999997;
+    opacity: 1;
+    font-size: 14px;
+    font-weight: normal;
+    font-family: 'Open Sans', Arial, 'Trebuchet MS', 'Segoe UI', 'Helvetica', sans-serif;
+    box-shadow: 1px 2px 8px 0 rgba(0, 0, 0, 0.35);
+    color: #FFFFFF;
+    box-sizing: border-box;
+}
+.cookiescript_checkbox_label {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding:0 4px;
+    line-height: 1.5;
+    margin:0;
+	text-align: left;
+}
+.cookiescript_pre_header {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+#cookiescript_close {
+    font-size: 29px;
+    line-height: 13px;
+    cursor: pointer;
+    color: #FFFFFF;
+    height: 15px;
+    width: 15px;
+    margin: 0 0 0 10px;
+    padding: 0;
+    overflow: hidden;
+    letter-spacing: 0;
+    font-family: 'Trebuchet MS', 'Arial', sans-serif;
+    font-weight: 100;
+    opacity: 0.85;
+    z-index: 999999;
+    position: relative;
+    top: -1px;
+}
+
+#cookiescript_buttons {
+    display: flex;
+    flex-direction: row;
+    font-weight: 700;
+}
+#cookiescript_manage_wrap {
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 0.4px;
+    font-weight: 700;
+}
+#cookiescript_manage {
+    display: inline;
+    cursor: pointer;
+    color: #FFFFFF;
+    opacity:0.85;
+    margin-left:-15px;
+}
+#cookiescript_manage #cookiescript_manageicon .cookiescript_gear {
+    fill: #FFFFFF;
+}
+#cookiescript_manage:hover #cookiescript_manageicon .cookiescript_gear {
+    fill: #6BBE6B;;
+}
+
+svg#cookiescript_manageicon {
+    width: 15px;
+    height: 15px;
+    display: inline;
+    margin: 0 5px 0 0;
+    padding: 0;
+    position: relative;
+    top: 3px;
+    vertical-align: baseline;
+}
+#cookiescript_header {
+    background-color: transparent;
+    z-index: 999998;
+    color: #FFFFFF;
+    font-size: 18px;
+    line-height: 1.3;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    opacity:1;
+}
+.cookiescript_checkbox {
+    display: flex;
+    flex-direction: row;
+}
+input.cookiescript_checkbox_input {
+}
+span.cookiescript_checkbox_text {
+    display: inline-block;
+    font-size: 12px;
+    margin: 0;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: #FFFFFF;
+    letter-spacing: 1px;
+}
+
+#cookiescript_save {
+    border: 0;
+    transition: all 0.25s ease 0s;
+    background-color: #6BBE6B;
+    color: #FFFFFF;
+    text-transform: uppercase;
+    font-size: 12px;
+    text-align: center;
+    line-height: 3.2;
+    letter-spacing: 0.4px;
+}
+/*IE 9 fixes*/
+@media screen and (min-width:0\0) and (min-resolution: .001dpcm) {
+    .cookiescript_checkbox_label {
+        position: relative;
+        top:-10px;
+    }
+    #cookiescript_accept, #cookiescript_reject, #cookiescript_save{
+    	display: inline-block;
+    }
+    #cookiescript_buttons{
+    	text-align:center;
+    }
+}
+#cookiescript_save{
+    display: none;
+}
+#cookiescript_reject {
+    border: 1px solid #FFFFFF;
+    text-align: center;
+    line-height: 3;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    color: #FFFFFF;
+    background: #1C1C1C;
+}
+#cookiescript_accept {
+	transition: all 0.25s ease 0s;
+	text-transform: uppercase;
+	font-size: 12px;
+	text-align: center;
+	letter-spacing: 0.4px;
+	border: 0;
+	background-color: #6BBE6B;
+	color: #FFFFFF;
+	line-height: 3.2;
+}
+
+#cookiescript_accept, #cookiescript_reject, #cookiescript_save {
+    font-weight: 700;
+    cursor: pointer;
+    white-space: nowrap;
+    transition-duration: 100ms;
+    transition-timing-function: ease-in-out;
+    min-width: 103px;
+}
+.cookiescript_bigger {
+    transform: scale(1.1);
+}
+#cookiescript_link {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 11px;
+    text-align: center;
+    font-weight: 400;
+    text-transform: uppercase;
+    opacity: 0.8;
+	display:inline !important;
+}
+
+#cookiescript_readmore,
+#cookiescript_reportlink,
+#cookiescript_cookiescriptlink {
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    margin: 0;
+    transition: all 100ms ease 0s;
+    background-color: transparent;
+    display: inline;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+#cookiescript_readmore{
+    color: #FFFFFF;
+}
+#cookiescript_reportlink,
+#cookiescript_cookiescriptlink {
+    color: #FFFFFF;
+}
+
+
+#cookiescript_readmore:hover,
+#cookiescript_reportlink:hover,
+#cookiescript_cookiescriptlink:hover {
+    text-decoration: underline;
+    color: #FFFFFF;
+
+}
+
+#cookiescript_description {
+    color: #FFFFFF;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+    line-height: 1.65;
+    font-weight: 400;
+}
+#cookiescript_checkboxs {
+}
+#cookiescript_close:hover,
+#cookiescript_manage:hover,
+#cookiescript_link:hover
+{
+    opacity: 1;
+}
+
+#cookiescript_reject:hover {
+    background-color: #2f2f2f;
+}
+
+#cookiescript_accept:hover{
+	background-color: #63af63;
+}
+#cookiescript_save:hover {
+    background-color: #63af63;
+}
+
+#cookiescript_readmore:hover,
+#cookiescript_reportlink:hover,
+#cookiescript_cookiescriptlink:hover
+{
+    color: #63af63;
+}
+
+#cookiescript_badge {
+    position: fixed;
+    line-height: 0;
+    cursor: pointer;
+    z-index: 99999;
+    font-size: 0;
+    color: #999;
+right: 10px;
+    display: flex;
+    flex-direction: row;
+    opacity: 1;
+}
+
+#cookiescript_badgetext{
+    text-transform: uppercase;
+    font-weight: 600;
+    font-family: 'Open Sans', Arial, 'Trebuchet MS', 'Segoe UI', 'Helvetica', sans-serif;
+    overflow: hidden;
+    transition-duration: 500ms;
+    white-space: nowrap;
+    padding-right: 0;
+    color: #FFFFFF;
+}
+
+#cookiescript_badgesvg{
+    width:40px;
+    height: 40px;
+}
+
+
+
+#cookiescript_badge {
+bottom: 10px;
+    border-radius:25px;
+    padding:3px;
+    transition-duration: 500ms;
+    box-shadow: 1px 2px 8px 0 rgba(0, 0, 0, 0.2);
+    background: #1C1C1C;
+}
+#cookiescript_badge:hover #cookiescript_badgetext{
+    max-width: 300px;
+    padding-right: 15px;
+    padding-left: 12px;
+}
+#cookiescript_badgetext {
+    font-size: 16px;
+    line-height: 2.5;
+    max-width: 0;
+}
+#cookiescript_badgeimage {
+    width: 40px;
+    height: 40px;
+}
+@media only screen and (max-width: 414px) {
+    #cookiescript_badgeimage {
+        width: 30px;
+        height: 30px;
+    }
+    #cookiescript_badgesvg{
+        width:30px;
+        height: 30px;
+    }
+    #cookiescript_badgetext{
+        display: none;
+    }
+}
+/*IE 9 fixes*/
+@media screen and (min-width:0\0) and (min-resolution: .001dpcm) {
+	#cookiescript_badgeimage{
+    	float:left;
+    }
+}
+
+@media print{
+    #cookiescript_injected{
+        display:none;
+    }
+}
+
+.cookiescript_fullreport,
+.cookiescript_fullreport tbody,
+.cookiescript_fullreport thead,
+.cookiescript_fullreport tr,
+.cookiescript_fullreport th,
+.cookiescript_fullreport td {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+table.cookiescript_fullreport {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.cookiescript_fullreport caption {
+    font-weight: 600;
+    padding: 10px;
+    text-align: left;
+    color: #6f6f6f;
+    font-size: 12px;
+    caption-side: top;
+}
+
+#cookiescript_maintabs {
+	display: flex;
+	justify-content: space-around;
+	background: rgba(193, 193, 193, 0.4);
+	align-items: stretch;
+	overflow: hidden;
+	min-height: 36px;
+}
+
+#cookiescript_categories,
+#cookiescript_iab_type {
+	display: flex;
+	justify-content: center;
+	padding: 7px 0;
+	border-bottom: 1px solid #F1F1F1;
+	flex-wrap: wrap;
+}
+
+#cookiescript_cookietablewrap {
+	max-width: 1140px;
+	overflow: hidden;
+    min-height: 216px;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	max-height: 350px;
+	box-sizing: border-box;
+	width: 100%;
+	position: relative;
+	display: flex;
+	flex-direction: column;
+}
+
+#cookiescript_cookietablewrap.cookiescript_hidden {
+	opacity: 0.0;
+	height: 0;
+	min-height: 0;
+	max-height: 0;
+	margin: 0;
+}
+
+#cookiescript_reportwrap,
+#cookiescript_iabwrap {
+	height: 137px;
+	overflow: auto;
+}
+
+#cookiescript_reportwrap > div,
+#cookiescript_iabwrap > div {
+	transition: opacity 200ms 0ms, height 0ms 200ms;
+}
+
+.cookiescript_category_description {
+	padding: 7px 10px;
+	font-size: 11px;
+	text-align: left;
+	font-weight: normal;
+	line-height: 1.5;
+	color: #6f6f6f;
+	margin: 0;
+}
+
+.cookiescript_fullreport th {
+	background: #F5F5F5;
+	color: #4b4b4b;
+}
+
+#cookiescript_categories > div,
+#cookiescript_iab_type > div {
+	cursor: pointer;
+	padding: 0 9px;
+	font-size: 11px;
+	font-weight: 600;
+	background: #f5f5f5;
+	color: #4b4b4b;
+	line-height: 2;
+	margin: 3px 5px;
+	white-space: nowrap;
+}
+
+#cookiescript_maintabs > div {
+	cursor: pointer;
+	width: 50%;
+	transition: all 300ms ease 0s;
+	text-transform: uppercase;
+	font-size: 12px;
+	text-align: center;
+	line-height: 1.5;
+	font-weight: 500;
+	color: #FEFEFE;
+	padding: 9px 0;
+	position: relative;
+}
+
+#cookiescript_maintabs .cookiescript_active {
+	background: #fefefe;
+	color: #1C1C1C;
+}
+#cookiescript_aboutwrap a,
+#cookiescript_aboutwrap a:hover{
+    color: #1C1C1C;
+    text-decoration: underline;
+}
+
+#cookiescript_declarationwrap {
+	background: #FEFEFE;
+	transition: opacity 200ms 0ms, height 0ms 200ms;
+}
+
+#cookiescript_categories .cookiescript_active,
+#cookiescript_iab_type .cookiescript_active {
+	background: #1C1C1C;
+	color: #FEFEFE;
+}
+
+#cookiescript_reportwrap::-webkit-scrollbar-track,
+#cookiescript_iabwrap::-webkit-scrollbar-track,
+#cookiescript_aboutwrap::-webkit-scrollbar-track {
+	background-color: #DADADA;
+}
+
+#cookiescript_reportwrap::-webkit-scrollbar,
+#cookiescript_iabwrap::-webkit-scrollbar,
+#cookiescript_aboutwrap::-webkit-scrollbar {
+	width: 6px;
+	height: 6px;
+}
+
+#cookiescript_reportwrap::-webkit-scrollbar-thumb,
+#cookiescript_iabwrap::-webkit-scrollbar-thumb,
+#cookiescript_aboutwrap::-webkit-scrollbar-thumb {
+	background-color: #1C1C1C;
+}
+
+.cookiescript_fullreport {
+	border-collapse: collapse;
+	width: 100%;
+	}
+
+.cookiescript_fullreport td:nth-child(1) {
+	font-weight: 600;
+}
+
+.cookiescript_fullreport td:nth-child(3), .cookiescript_fullreport th:nth-child(3) {
+	text-align: center;
+}
+
+.cookiescript_fullreport td, .cookiescript_fullreport th {
+	white-space: normal;
+	padding: 0 8px;
+	font-size: 11px;
+	font-weight: 600;
+	text-align: left;
+	line-height: 1.5;
+	margin: 0;
+}
+
+.cookiescript_fullreport td {
+	padding: 7px 8px;
+	line-height: 1.3;
+	vertical-align: top;
+	font-weight: 400;
+	border-bottom: 1px solid #F1F1F1;
+	border-top: 0;
+	border-left: 0;
+	border-right: 0;
+	color: #6f6f6f;
+	background: transparent;
+}
+.cookiescript_fullreport th {
+	padding: 7px 8px;
+	vertical-align: middle;
+}
+.cookiescript_vendor_name a {
+	text-decoration: underline;
+	font-weight: bold;
+	color: #6f6f6f;
+	line-height: normal;
+	border: 0;
+	padding: 0;
+	margin: 0;
+	background: transparent;
+	font-size: 11px;
+}
+.cookiescript_vendor_name a:hover {
+	color: #000;
+}
+
+.cookiescript_fullreport td:last-child, .cookiescript_fullreport th:last-child {
+	padding-right: 18px;
+}
+
+.cookiescript_fullreport td:nth-child(1), .cookiescript_fullreport th:nth-child(1) {
+	padding-left: 18px;
+	word-break: normal;
+}
+
+#cookiescript_aboutwrap {
+	padding: 7px 18px;
+	font-size: 12px;
+	text-align: left;
+	font-weight: normal;
+	line-height: 1.5;
+	background-color: #fefefe;
+	box-sizing: border-box;
+	color: #6f6f6f;
+	transition: opacity 200ms 0ms;
+	overflow: auto;
+	flex-grow: 0;
+	height: 180px;
+}
+
+#cookiescript_aboutwrap.cookiescript_hidden {
+	opacity: 0;
+	height: 0;
+	overflow: hidden;
+	padding: 0;
+}
+
+#cookiescript_declarationwrap.cookiescript_hidden {
+	opacity: 0;
+	height: 0;
+	overflow: hidden;
+}
+
+#cookiescript_setting_advertising_wrap {
+    padding: 7px 18px;
+    font-size: 12px;
+    text-align: left;
+    font-weight: normal;
+    line-height: 1.5;
+    background-color: #fefefe;
+    box-sizing: border-box;
+    color: #6f6f6f;
+    transition: opacity 200ms 0ms;
+    overflow: auto;
+    flex-grow: 0;
+    height: 180px;
+}
+
+#cookiescript_setting_advertising_wrap.cookiescript_hidden {
+    opacity: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+#cookiescript_tabscontent {
+	background: #FEFEFE;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+}
+
+#cookiescript_reportwrap .cookiescript_hidden,
+#cookiescript_iabwrap .cookiescript_hidden {
+	opacity: 0;
+	height: 0;
+	transition: opacity 200ms 0ms, height 0ms 200ms;
+	overflow: hidden;
+}
+#cookiescript_reportdate{
+	font-size: 12px;
+	text-align: right;
+	opacity: 0.9;
+	padding: 0 10px;
+	margin: 0;
+}
+
+#cookiescript_injected.hascookiereport #cookiescript_copyright{
+	display: none;
+}
+
+
+@media only screen and (max-width: 414px) {
+	.cookiescript_fullreport thead {
+		display: none;
+	}
+
+	.cookiescript_fullreport td {
+		display: flex;
+	}
+
+	.cookiescript_fullreport td::before {
+		content: attr(label);
+		font-weight: bold;
+		width: 120px;
+		min-width: 120px;
+	}
+
+	.cookiescript_category_description,
+	.cookiescript_fullreport td,
+	.cookiescript_fullreport td:nth-child(1),
+	.cookiescript_fullreport td:nth-child(3) {
+		padding: 7px 10px;
+		text-align: left;
+	}
+
+	.cookiescript_fullreport td:last-child {
+		border-bottom: none;
+	}
+
+	.cookiescript_fullreport tr:nth-child(even) {
+		background: #f5f5f5;
+	}
+
+.cookiescript_fullreport tr:nth-child(even) td {
+    border-bottom: 1px solid #FFF;
+	}
+}
+
+
+@media screen and (min-width:0\0) and (min-resolution: .001dpcm) {
+	#cookiescript_maintabs > div{
+		display:block;
+		float:left;
+	}
+	#cookiescript_categories > div,
+	#cookiescript_iab_type > div{
+		display:inline-block;
+	}
+
+}
+
+
+
+
+
+
+
+.cookiescript_rtl {
+    direction:rtl;
+}
+
+/*Start Checkboxes*/
+#cookiescript_injected_fsd .mdc-checkbox,
+#cookiescript_injected .mdc-checkbox {
+    box-sizing: content-box !important;
+}
+#cookiescript_injected_fsd .mdc-checkbox__native-control,
+#cookiescript_injected .mdc-checkbox__native-control {
+    display: block;
+    z-index: 1;
+}
+#cookiescript_injected_fsd .mdc-checkbox .mdc-checkbox__native-control:focus~.mdc-checkbox__background::before, 
+#cookiescript_injected .mdc-checkbox .mdc-checkbox__native-control:focus~.mdc-checkbox__background::before, 
+#cookiescript_injected_fsd .mdc-checkbox .mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background::before,
+#cookiescript_injected .mdc-checkbox .mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background::before {
+    background-color: #FFFFFF;
+}
+#cookiescript_injected .mdc-checkbox,#cookiescript_injected_fsd .mdc-checkbox{display:inline-block;position:relative;flex:0 0 18px;box-sizing:content-box;width:18px;height:18px;line-height:0;white-space:nowrap;cursor:pointer;vertical-align:bottom;padding:11px}#cookiescript_injected .mdc-checkbox .mdc-checkbox__native-control:checked~.mdc-checkbox__background::before,#cookiescript_injected .mdc-checkbox .mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background::before,#cookiescript_injected_fsd .mdc-checkbox .mdc-checkbox__native-control:checked~.mdc-checkbox__background::before,#cookiescript_injected_fsd .mdc-checkbox .mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background::before{background-color:#FFFFFF}@supports not (-ms-ime-align:auto){#cookiescript_injected .mdc-checkbox .mdc-checkbox__native-control:checked~.mdc-checkbox__background::before,#cookiescript_injected .mdc-checkbox .mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background::before,#cookiescript_injected_fsd .mdc-checkbox .mdc-checkbox__native-control:checked~.mdc-checkbox__background::before,#cookiescript_injected_fsd .mdc-checkbox .mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background::before{background-color:var(--mdc-theme-secondary, #FFFFFF)}}#cookiescript_injected .mdc-checkbox .mdc-checkbox__background,#cookiescript_injected_fsd .mdc-checkbox .mdc-checkbox__background{top:11px;left:11px}#cookiescript_injected .mdc-checkbox .mdc-checkbox__background::before,#cookiescript_injected_fsd .mdc-checkbox .mdc-checkbox__background::before{top:-13px;left:-13px;width:40px;height:40px}#cookiescript_injected .mdc-checkbox .mdc-checkbox__native-control,#cookiescript_injected_fsd .mdc-checkbox .mdc-checkbox__native-control{top:0;right:0;left:0;width:40px;height:40px}#cookiescript_injected .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate)~.mdc-checkbox__background,#cookiescript_injected_fsd .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate)~.mdc-checkbox__background{border-color:#FFFFFF;background-color:transparent}#cookiescript_injected .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background,#cookiescript_injected .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background,#cookiescript_injected_fsd .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background,#cookiescript_injected_fsd .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background{border-color:#FFFFFF;background-color:#FFFFFF}#cookiescript_injected .mdc-checkbox__native-control[disabled]:not(:checked):not(:indeterminate)~.mdc-checkbox__background,#cookiescript_injected_fsd .mdc-checkbox__native-control[disabled]:not(:checked):not(:indeterminate)~.mdc-checkbox__background{border-color:rgba(255,255,255,0.26);background-color:transparent}#cookiescript_injected .mdc-checkbox__native-control[disabled]:checked~.mdc-checkbox__background,#cookiescript_injected .mdc-checkbox__native-control[disabled]:indeterminate~.mdc-checkbox__background,#cookiescript_injected_fsd .mdc-checkbox__native-control[disabled]:checked~.mdc-checkbox__background,#cookiescript_injected_fsd .mdc-checkbox__native-control[disabled]:indeterminate~.mdc-checkbox__background{border-color:transparent;background-color:rgba(255,255,255,0.26)}#cookiescript_injected .mdc-checkbox__native-control:enabled~.mdc-checkbox__background .mdc-checkbox__checkmark,#cookiescript_injected_fsd .mdc-checkbox__native-control:enabled~.mdc-checkbox__background .mdc-checkbox__checkmark{color:#1C1C1C}#cookiescript_injected .mdc-checkbox__native-control:disabled~.mdc-checkbox__background .mdc-checkbox__checkmark,#cookiescript_injected_fsd .mdc-checkbox__native-control:disabled~.mdc-checkbox__background .mdc-checkbox__checkmark{color:#1C1C1C}#cookiescript_injected .mdc-checkbox__background,#cookiescript_injected_fsd .mdc-checkbox__background{display:inline-flex;position:absolute;align-items:center;justify-content:center;box-sizing:border-box;width:18px;height:18px;border:2px solid #FFFFFF;border-radius:2px;background-color:transparent;pointer-events:none;will-change:background-color,border-color;transition:background-color 90ms 0s cubic-bezier(.4,0,.6,1),border-color 90ms 0s cubic-bezier(.4,0,.6,1)}#cookiescript_injected .mdc-checkbox__background .mdc-checkbox__background::before,#cookiescript_injected_fsd .mdc-checkbox__background .mdc-checkbox__background::before{background-color:#000}@supports not (-ms-ime-align:auto){#cookiescript_injected .mdc-checkbox__checkmark,#cookiescript_injected_fsd .mdc-checkbox__checkmark{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;opacity:0;transition:opacity 180ms 0s cubic-bezier(.4,0,.6,1)}#cookiescript_injected .mdc-checkbox__checkmark-path,#cookiescript_injected_fsd .mdc-checkbox__checkmark-path{transition:stroke-dashoffset 180ms 0s cubic-bezier(.4,0,.6,1);stroke:currentColor;stroke-width:3.12px;stroke-dashoffset:29.7833385;stroke-dasharray:29.7833385}#cookiescript_injected .mdc-checkbox__native-control:checked~.mdc-checkbox__background,#cookiescript_injected .mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background,#cookiescript_injected_fsd .mdc-checkbox__native-control:checked~.mdc-checkbox__background,#cookiescript_injected_fsd .mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background{transition:border-color 90ms 0s cubic-bezier(0,0,.2,1),background-color 90ms 0s cubic-bezier(0,0,.2,1)}#cookiescript_injected .mdc-checkbox__native-control:checked~.mdc-checkbox__background .mdc-checkbox__checkmark-path,#cookiescript_injected .mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background .mdc-checkbox__checkmark-path,#cookiescript_injected_fsd .mdc-checkbox__native-control:checked~.mdc-checkbox__background .mdc-checkbox__checkmark-path,#cookiescript_injected_fsd .mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background .mdc-checkbox__checkmark-path{stroke-dashoffset:0}#cookiescript_injected .mdc-checkbox__background::before,#cookiescript_injected_fsd .mdc-checkbox__background::before{position:absolute;-webkit-transform:scale(0,0);transform:scale(0,0);border-radius:50%;opacity:0;pointer-events:none;content:"";will-change:opacity,transform;transition:opacity 90ms 0s cubic-bezier(.4,0,.6,1),-webkit-transform 90ms 0s cubic-bezier(.4,0,.6,1);transition:opacity 90ms 0s cubic-bezier(.4,0,.6,1),transform 90ms 0s cubic-bezier(.4,0,.6,1);transition:opacity 90ms 0s cubic-bezier(.4,0,.6,1),transform 90ms 0s cubic-bezier(.4,0,.6,1),-webkit-transform 90ms 0s cubic-bezier(.4,0,.6,1)}#cookiescript_injected .mdc-checkbox__native-control:focus~.mdc-checkbox__background::before,#cookiescript_injected_fsd .mdc-checkbox__native-control:focus~.mdc-checkbox__background::before{-webkit-transform:scale(1);transform:scale(1);opacity:.12;transition:opacity 80ms 0s cubic-bezier(0,0,.2,1),-webkit-transform 80ms 0s cubic-bezier(0,0,.2,1);transition:opacity 80ms 0s cubic-bezier(0,0,.2,1),transform 80ms 0s cubic-bezier(0,0,.2,1);transition:opacity 80ms 0s cubic-bezier(0,0,.2,1),transform 80ms 0s cubic-bezier(0,0,.2,1),-webkit-transform 80ms 0s cubic-bezier(0,0,.2,1)}#cookiescript_injected .mdc-checkbox__native-control,#cookiescript_injected_fsd .mdc-checkbox__native-control{position:absolute;margin:0;padding:0;opacity:0;cursor:inherit}#cookiescript_injected .mdc-checkbox__native-control:disabled,#cookiescript_injected_fsd .mdc-checkbox__native-control:disabled{cursor:default;pointer-events:none}#cookiescript_injected .mdc-checkbox__native-control:checked~.mdc-checkbox__background .mdc-checkbox__checkmark,#cookiescript_injected_fsd .mdc-checkbox__native-control:checked~.mdc-checkbox__background .mdc-checkbox__checkmark{transition:opacity 180ms 0s cubic-bezier(0,0,.2,1),-webkit-transform 180ms 0s cubic-bezier(0,0,.2,1);transition:opacity 180ms 0s cubic-bezier(0,0,.2,1),transform 180ms 0s cubic-bezier(0,0,.2,1);transition:opacity 180ms 0s cubic-bezier(0,0,.2,1),transform 180ms 0s cubic-bezier(0,0,.2,1),-webkit-transform 180ms 0s cubic-bezier(0,0,.2,1);opacity:1}#cookiescript_injected .mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background .mdc-checkbox__checkmark,#cookiescript_injected_fsd .mdc-checkbox__native-control:indeterminate~.mdc-checkbox__background .mdc-checkbox__checkmark{-webkit-transform:rotate(45deg);transform:rotate(45deg);opacity:0;transition:opacity 90ms 0s cubic-bezier(.4,0,.6,1),-webkit-transform 90ms 0s cubic-bezier(.4,0,.6,1);transition:opacity 90ms 0s cubic-bezier(.4,0,.6,1),transform 90ms 0s cubic-bezier(.4,0,.6,1);transition:opacity 90ms 0s cubic-bezier(.4,0,.6,1),transform 90ms 0s cubic-bezier(.4,0,.6,1),-webkit-transform 90ms 0s cubic-bezier(.4,0,.6,1)}#cookiescript_injected .mdc-checkbox,#cookiescript_injected_fsd .mdc-checkbox{-webkit-tap-highlight-color:transparent}}
+/*End Checkboxes*/
+
+
+/*Start Toggle*/
+
+#cookiescript_injected .mdc-elevation-overlay,#cookiescript_injected_fsd .mdc-elevation-overlay{position:absolute;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity 280ms cubic-bezier(.4,0,.2,1);background-color:#fff}#cookiescript_injected .mdc-switch,#cookiescript_injected_fsd .mdc-switch{align-items:center;background:0 0;border:none;cursor:pointer;display:inline-flex;flex-shrink:0;margin:0;outline:0;overflow:visible;padding:0;position:relative}#cookiescript_injected .mdc-switch:disabled,#cookiescript_injected_fsd .mdc-switch:disabled{cursor:default;pointer-events:none}#cookiescript_injected .mdc-switch input[type=checkbox],#cookiescript_injected_fsd .mdc-switch input[type=checkbox]{display:none;visibility:hidden}#cookiescript_injected .mdc-switch__track,#cookiescript_injected_fsd .mdc-switch__track{overflow:hidden;position:relative;width:100%}#cookiescript_injected .mdc-switch__track::after,#cookiescript_injected .mdc-switch__track::before,#cookiescript_injected_fsd .mdc-switch__track::after,#cookiescript_injected_fsd .mdc-switch__track::before{border:1px solid transparent;border-radius:inherit;box-sizing:border-box;content:"";height:100%;left:0;position:absolute;width:100%}#cookiescript_injected .mdc-switch__track::before,#cookiescript_injected_fsd .mdc-switch__track::before{transition:-webkit-transform 75ms 0s cubic-bezier(0,0,.2,1);transition:transform 75ms 0s cubic-bezier(0,0,.2,1);-webkit-transform:translateX(0);transform:translateX(0)}#cookiescript_injected .mdc-switch__track::after,#cookiescript_injected_fsd .mdc-switch__track::after{transition:-webkit-transform 75ms 0s cubic-bezier(.4,0,.6,1);transition:transform 75ms 0s cubic-bezier(.4,0,.6,1);-webkit-transform:translateX(-100%);transform:translateX(-100%)}#cookiescript_injected .mdc-switch__track[dir=rtl]::after,#cookiescript_injected [dir=rtl] .mdc-switch__track::after,#cookiescript_injected_fsd .mdc-switch__track[dir=rtl]::after,#cookiescript_injected_fsd [dir=rtl] .mdc-switch__track::after{-webkit-transform:translateX(100%);transform:translateX(100%)}#cookiescript_injected .mdc-switch--selected .mdc-switch__track::before,#cookiescript_injected_fsd .mdc-switch--selected .mdc-switch__track::before{transition:-webkit-transform 75ms 0s cubic-bezier(.4,0,.6,1);transition:transform 75ms 0s cubic-bezier(.4,0,.6,1);-webkit-transform:translateX(100%);transform:translateX(100%)}#cookiescript_injected .mdc-switch--selected .mdc-switch__track[dir=rtl]::before,#cookiescript_injected [dir=rtl] .mdc-switch--selected .mdc-switch__track::before,#cookiescript_injected_fsd .mdc-switch--selected .mdc-switch__track[dir=rtl]::before,#cookiescript_injected_fsd [dir=rtl] .mdc-switch--selected .mdc-switch__track::before{-webkit-transform:translateX(-100%);transform:translateX(-100%)}#cookiescript_injected .mdc-switch--selected .mdc-switch__track::after,#cookiescript_injected_fsd .mdc-switch--selected .mdc-switch__track::after{transition:-webkit-transform 75ms 0s cubic-bezier(0,0,.2,1);transition:transform 75ms 0s cubic-bezier(0,0,.2,1);-webkit-transform:translateX(0);transform:translateX(0)}#cookiescript_injected .mdc-switch__handle-track,#cookiescript_injected_fsd .mdc-switch__handle-track{height:100%;pointer-events:none;position:absolute;top:0;transition:-webkit-transform 75ms 0s cubic-bezier(.4,0,.2,1);transition:transform 75ms 0s cubic-bezier(.4,0,.2,1);left:0;right:auto;-webkit-transform:translateX(0);transform:translateX(0)}#cookiescript_injected .mdc-switch__handle-track[dir=rtl],#cookiescript_injected [dir=rtl] .mdc-switch__handle-track,#cookiescript_injected_fsd .mdc-switch__handle-track[dir=rtl],#cookiescript_injected_fsd [dir=rtl] .mdc-switch__handle-track{left:auto;right:0}#cookiescript_injected .mdc-switch--selected .mdc-switch__handle-track,#cookiescript_injected_fsd .mdc-switch--selected .mdc-switch__handle-track{-webkit-transform:translateX(100%);transform:translateX(100%)}#cookiescript_injected .mdc-switch--selected .mdc-switch__handle-track[dir=rtl],#cookiescript_injected [dir=rtl] .mdc-switch--selected .mdc-switch__handle-track,#cookiescript_injected_fsd .mdc-switch--selected .mdc-switch__handle-track[dir=rtl],#cookiescript_injected_fsd [dir=rtl] .mdc-switch--selected .mdc-switch__handle-track{-webkit-transform:translateX(-100%);transform:translateX(-100%)}#cookiescript_injected .mdc-switch__handle,#cookiescript_injected_fsd .mdc-switch__handle{display:flex;pointer-events:auto;position:absolute;top:50%;-webkit-transform:translateY(-50%);transform:translateY(-50%);left:0;right:auto}#cookiescript_injected .mdc-switch__handle[dir=rtl],#cookiescript_injected [dir=rtl] .mdc-switch__handle,#cookiescript_injected_fsd .mdc-switch__handle[dir=rtl],#cookiescript_injected_fsd [dir=rtl] .mdc-switch__handle{left:auto;right:0}#cookiescript_injected .mdc-switch__handle::after,#cookiescript_injected .mdc-switch__handle::before,#cookiescript_injected_fsd .mdc-switch__handle::after,#cookiescript_injected_fsd .mdc-switch__handle::before{border:1px solid transparent;border-radius:inherit;box-sizing:border-box;content:"";width:100%;height:100%;left:0;position:absolute;top:0;transition:background-color 75ms 0s cubic-bezier(.4,0,.2,1),border-color 75ms 0s cubic-bezier(.4,0,.2,1);z-index:-1}#cookiescript_injected .mdc-switch__shadow,#cookiescript_injected_fsd .mdc-switch__shadow{border-radius:inherit;bottom:0;left:0;position:absolute;right:0;top:0}#cookiescript_injected .mdc-elevation-overlay,#cookiescript_injected_fsd .mdc-elevation-overlay{bottom:0;left:0;right:0;top:0}#cookiescript_injected .mdc-switch__ripple,#cookiescript_injected_fsd .mdc-switch__ripple{left:50%;position:absolute;top:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);z-index:-1}#cookiescript_injected .mdc-switch:disabled .mdc-switch__ripple,#cookiescript_injected_fsd .mdc-switch:disabled .mdc-switch__ripple{display:none}#cookiescript_injected .mdc-switch__icons,#cookiescript_injected_fsd .mdc-switch__icons{height:100%;position:relative;width:100%;z-index:1}#cookiescript_injected .mdc-switch__icon,#cookiescript_injected_fsd .mdc-switch__icon{bottom:0;left:0;margin:auto;position:absolute;right:0;top:0;opacity:0;transition:opacity 30ms 0s cubic-bezier(.4,0,1,1)}#cookiescript_injected .mdc-switch--selected .mdc-switch__icon--on,#cookiescript_injected .mdc-switch--unselected .mdc-switch__icon--off,#cookiescript_injected_fsd .mdc-switch--selected .mdc-switch__icon--on,#cookiescript_injected_fsd .mdc-switch--unselected .mdc-switch__icon--off{opacity:1;transition:opacity 45ms 30ms cubic-bezier(0,0,.2,1)}#cookiescript_injected .mdc-switch,#cookiescript_injected_fsd .mdc-switch{will-change:transform,opacity}@-webkit-keyframes mdc-ripple-fg-radius-in{from{-webkit-animation-timing-function:cubic-bezier(.4,0,.2,1);animation-timing-function:cubic-bezier(.4,0,.2,1);-webkit-transform:translate(0) scale(1);transform:translate(0) scale(1)}to{-webkit-transform:translate(0) scale(1);transform:translate(0) scale(1)}}@keyframes mdc-ripple-fg-radius-in{from{-webkit-animation-timing-function:cubic-bezier(.4,0,.2,1);animation-timing-function:cubic-bezier(.4,0,.2,1);-webkit-transform:translate(0) scale(1);transform:translate(0) scale(1)}to{-webkit-transform:translate(0) scale(1);transform:translate(0) scale(1)}}@-webkit-keyframes mdc-ripple-fg-opacity-in{from{-webkit-animation-timing-function:linear;animation-timing-function:linear;opacity:0}to{opacity:.1}}@keyframes mdc-ripple-fg-opacity-in{from{-webkit-animation-timing-function:linear;animation-timing-function:linear;opacity:0}to{opacity:.1}}@-webkit-keyframes mdc-ripple-fg-opacity-out{from{-webkit-animation-timing-function:linear;animation-timing-function:linear;opacity:.1}to{opacity:0}}@keyframes mdc-ripple-fg-opacity-out{from{-webkit-animation-timing-function:linear;animation-timing-function:linear;opacity:.1}to{opacity:0}}#cookiescript_injected .mdc-switch .mdc-switch__ripple::after,#cookiescript_injected .mdc-switch .mdc-switch__ripple::before,#cookiescript_injected_fsd .mdc-switch .mdc-switch__ripple::after,#cookiescript_injected_fsd .mdc-switch .mdc-switch__ripple::before{position:absolute;border-radius:50%;opacity:0;pointer-events:none;content:""}#cookiescript_injected .mdc-switch .mdc-switch__ripple::before,#cookiescript_injected_fsd .mdc-switch .mdc-switch__ripple::before{transition:opacity 15ms linear,background-color 15ms linear;z-index:1}#cookiescript_injected .mdc-switch .mdc-switch__ripple::after,#cookiescript_injected_fsd .mdc-switch .mdc-switch__ripple::after{z-index:0}#cookiescript_injected .mdc-switch.mdc-ripple-upgraded .mdc-switch__ripple::before,#cookiescript_injected_fsd .mdc-switch.mdc-ripple-upgraded .mdc-switch__ripple::before{-webkit-transform:scale(1);transform:scale(1)}#cookiescript_injected .mdc-switch.mdc-ripple-upgraded .mdc-switch__ripple::after,#cookiescript_injected_fsd .mdc-switch.mdc-ripple-upgraded .mdc-switch__ripple::after{top:0;left:0;-webkit-transform:scale(0);transform:scale(0);-webkit-transform-origin:center center;transform-origin:center center}#cookiescript_injected .mdc-switch.mdc-ripple-upgraded--unbounded .mdc-switch__ripple::after,#cookiescript_injected_fsd .mdc-switch.mdc-ripple-upgraded--unbounded .mdc-switch__ripple::after{top:0;left:0}#cookiescript_injected .mdc-switch.mdc-ripple-upgraded--foreground-activation .mdc-switch__ripple::after,#cookiescript_injected_fsd .mdc-switch.mdc-ripple-upgraded--foreground-activation .mdc-switch__ripple::after{-webkit-animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards;animation:mdc-ripple-fg-radius-in 225ms forwards,mdc-ripple-fg-opacity-in 75ms forwards}#cookiescript_injected .mdc-switch.mdc-ripple-upgraded--foreground-deactivation .mdc-switch__ripple::after,#cookiescript_injected_fsd .mdc-switch.mdc-ripple-upgraded--foreground-deactivation .mdc-switch__ripple::after{-webkit-animation:mdc-ripple-fg-opacity-out 150ms;animation:mdc-ripple-fg-opacity-out 150ms;-webkit-transform:translate(0) scale(1);transform:translate(0) scale(1)}#cookiescript_injected .mdc-switch .mdc-switch__ripple::after,#cookiescript_injected .mdc-switch .mdc-switch__ripple::before,#cookiescript_injected_fsd .mdc-switch .mdc-switch__ripple::after,#cookiescript_injected_fsd .mdc-switch .mdc-switch__ripple::before{top:calc(50% - 50%);left:calc(50% - 50%);width:100%;height:100%}#cookiescript_injected .mdc-switch.mdc-ripple-upgraded .mdc-switch__ripple::after,#cookiescript_injected .mdc-switch.mdc-ripple-upgraded .mdc-switch__ripple::before,#cookiescript_injected_fsd .mdc-switch.mdc-ripple-upgraded .mdc-switch__ripple::after,#cookiescript_injected_fsd .mdc-switch.mdc-ripple-upgraded .mdc-switch__ripple::before{top:0;left:0;width:0;height:0}#cookiescript_injected .mdc-switch.mdc-ripple-upgraded .mdc-switch__ripple::after,#cookiescript_injected_fsd .mdc-switch.mdc-ripple-upgraded .mdc-switch__ripple::after{width:0;height:0}#cookiescript_injected .mdc-switch,#cookiescript_injected_fsd .mdc-switch{width:36px}#cookiescript_injected .mdc-switch.mdc-switch--selected:enabled .mdc-switch__handle::after{background:}#cookiescript_injected .mdc-switch.mdc-switch--selected:enabled:hover:not(:focus):not(:active) .mdc-switch__handle::after{background:}#cookiescript_injected .mdc-switch.mdc-switch--selected:enabled:focus:not(:active) .mdc-switch__handle::after{background:}#cookiescript_injected .mdc-switch.mdc-switch--selected:enabled:active .mdc-switch__handle::after{background:}#cookiescript_injected .mdc-switch.mdc-switch--selected:disabled .mdc-switch__handle::after,#cookiescript_injected_fsd .mdc-switch.mdc-switch--selected:disabled .mdc-switch__handle::after{background:#424242}#cookiescript_injected .mdc-switch.mdc-switch--unselected:enabled .mdc-switch__handle::after,#cookiescript_injected_fsd .mdc-switch.mdc-switch--unselected:enabled .mdc-switch__handle::after{background:#616161}#cookiescript_injected .mdc-switch.mdc-switch--unselected:enabled:hover:not(:focus):not(:active) .mdc-switch__handle::after,#cookiescript_injected_fsd .mdc-switch.mdc-switch--unselected:enabled:hover:not(:focus):not(:active) .mdc-switch__handle::after{background:#212121}#cookiescript_injected .mdc-switch.mdc-switch--unselected:enabled:focus:not(:active) .mdc-switch__handle::after,#cookiescript_injected_fsd .mdc-switch.mdc-switch--unselected:enabled:focus:not(:active) .mdc-switch__handle::after{background:#212121}#cookiescript_injected .mdc-switch.mdc-switch--unselected:enabled:active .mdc-switch__handle::after,#cookiescript_injected_fsd .mdc-switch.mdc-switch--unselected:enabled:active .mdc-switch__handle::after{background:#212121}#cookiescript_injected .mdc-switch.mdc-switch--unselected:disabled .mdc-switch__handle::after,#cookiescript_injected_fsd .mdc-switch.mdc-switch--unselected:disabled .mdc-switch__handle::after{background:#424242}#cookiescript_injected .mdc-switch .mdc-switch__handle::before,#cookiescript_injected_fsd .mdc-switch .mdc-switch__handle::before{background:#fff}#cookiescript_injected .mdc-switch:enabled .mdc-switch__shadow,#cookiescript_injected_fsd .mdc-switch:enabled .mdc-switch__shadow{box-shadow:0 2px 1px -1px rgba(0,0,0,.2),0 1px 1px 0 rgba(0,0,0,.14),0 1px 3px 0 rgba(0,0,0,.12);--mdc-elevation-box-shadow-for-gss:0px 2px 1px -1px rgba(0, 0, 0, 0.2),0px 1px 1px 0px rgba(0, 0, 0, 0.14),0px 1px 3px 0px rgba(0, 0, 0, 0.12)}#cookiescript_injected .mdc-switch:disabled .mdc-switch__shadow,#cookiescript_injected_fsd .mdc-switch:disabled .mdc-switch__shadow{box-shadow:0 0 0 0 rgba(0,0,0,.2),0 0 0 0 rgba(0,0,0,.14),0 0 0 0 rgba(0,0,0,.12);--mdc-elevation-box-shadow-for-gss:0px 0px 0px 0px rgba(0, 0, 0, 0.2),0px 0px 0px 0px rgba(0, 0, 0, 0.14),0px 0px 0px 0px rgba(0, 0, 0, 0.12)}#cookiescript_injected .mdc-switch .mdc-switch__handle,#cookiescript_injected_fsd .mdc-switch .mdc-switch__handle{height:20px}#cookiescript_injected .mdc-switch:disabled .mdc-switch__handle::after,#cookiescript_injected_fsd .mdc-switch:disabled .mdc-switch__handle::after{opacity:.38}#cookiescript_injected .mdc-switch .mdc-switch__handle,#cookiescript_injected_fsd .mdc-switch .mdc-switch__handle{border-radius:10px}#cookiescript_injected .mdc-switch .mdc-switch__handle,#cookiescript_injected_fsd .mdc-switch .mdc-switch__handle{width:20px}#cookiescript_injected .mdc-switch .mdc-switch__handle-track,#cookiescript_injected_fsd .mdc-switch .mdc-switch__handle-track{width:calc(100% - 20px)}#cookiescript_injected .mdc-switch.mdc-switch--selected:enabled .mdc-switch__icon,#cookiescript_injected_fsd .mdc-switch.mdc-switch--selected:enabled .mdc-switch__icon{fill:#fff}#cookiescript_injected .mdc-switch.mdc-switch--selected:disabled .mdc-switch__icon,#cookiescript_injected_fsd .mdc-switch.mdc-switch--selected:disabled .mdc-switch__icon{fill:#fff}#cookiescript_injected .mdc-switch.mdc-switch--unselected:enabled .mdc-switch__icon,#cookiescript_injected_fsd .mdc-switch.mdc-switch--unselected:enabled .mdc-switch__icon{fill:#fff}#cookiescript_injected .mdc-switch.mdc-switch--unselected:disabled .mdc-switch__icon,#cookiescript_injected_fsd .mdc-switch.mdc-switch--unselected:disabled .mdc-switch__icon{fill:#fff}#cookiescript_injected .mdc-switch.mdc-switch--selected:disabled .mdc-switch__icons,#cookiescript_injected_fsd .mdc-switch.mdc-switch--selected:disabled .mdc-switch__icons{opacity:.38}#cookiescript_injected .mdc-switch.mdc-switch--unselected:disabled .mdc-switch__icons,#cookiescript_injected_fsd .mdc-switch.mdc-switch--unselected:disabled .mdc-switch__icons{opacity:.38}#cookiescript_injected .mdc-switch.mdc-switch--selected .mdc-switch__icon,#cookiescript_injected_fsd .mdc-switch.mdc-switch--selected .mdc-switch__icon{width:18px;height:18px}#cookiescript_injected .mdc-switch.mdc-switch--unselected .mdc-switch__icon,#cookiescript_injected_fsd .mdc-switch.mdc-switch--unselected .mdc-switch__icon{width:18px;height:18px}#cookiescript_injected .mdc-switch.mdc-switch--selected:enabled:hover:not(:focus) .mdc-switch__ripple::after,#cookiescript_injected .mdc-switch.mdc-switch--selected:enabled:hover:not(:focus) .mdc-switch__ripple::before{background-color:}#cookiescript_injected .mdc-switch.mdc-switch--selected:enabled:focus .mdc-switch__ripple::after,#cookiescript_injected .mdc-switch.mdc-switch--selected:enabled:focus .mdc-switch__ripple::before{background-color:}#cookiescript_injected .mdc-switch.mdc-switch--selected:enabled:active .mdc-switch__ripple::after,#cookiescript_injected .mdc-switch.mdc-switch--selected:enabled:active .mdc-switch__ripple::before{background-color:}#cookiescript_injected .mdc-switch.mdc-switch--unselected:enabled:hover:not(:focus) .mdc-switch__ripple::after,#cookiescript_injected .mdc-switch.mdc-switch--unselected:enabled:hover:not(:focus) .mdc-switch__ripple::before,#cookiescript_injected_fsd .mdc-switch.mdc-switch--unselected:enabled:hover:not(:focus) .mdc-switch__ripple::after,#cookiescript_injected_fsd .mdc-switch.mdc-switch--unselected:enabled:hover:not(:focus) .mdc-switch__ripple::before{background-color:#424242}#cookiescript_injected .mdc-switch.mdc-switch--unselected:enabled:focus .mdc-switch__ripple::after,#cookiescript_injected .mdc-switch.mdc-switch--unselected:enabled:focus .mdc-switch__ripple::before,#cookiescript_injected_fsd .mdc-switch.mdc-switch--unselected:enabled:focus .mdc-switch__ripple::after,#cookiescript_injected_fsd .mdc-switch.mdc-switch--unselected:enabled:focus .mdc-switch__ripple::before{background-color:#424242}#cookiescript_injected .mdc-switch.mdc-switch--unselected:enabled:active .mdc-switch__ripple::after,#cookiescript_injected .mdc-switch.mdc-switch--unselected:enabled:active .mdc-switch__ripple::before,#cookiescript_injected_fsd .mdc-switch.mdc-switch--unselected:enabled:active .mdc-switch__ripple::after,#cookiescript_injected_fsd .mdc-switch.mdc-switch--unselected:enabled:active .mdc-switch__ripple::before{background-color:#424242}#cookiescript_injected .mdc-switch.mdc-switch--selected:enabled:hover:not(:focus).mdc-ripple-surface--hover .mdc-switch__ripple::before,#cookiescript_injected .mdc-switch.mdc-switch--selected:enabled:hover:not(:focus):hover .mdc-switch__ripple::before,#cookiescript_injected_fsd .mdc-switch.mdc-switch--selected:enabled:hover:not(:focus).mdc-ripple-surface--hover .mdc-switch__ripple::before,#cookiescript_injected_fsd .mdc-switch.mdc-switch--selected:enabled:hover:not(:focus):hover .mdc-switch__ripple::before{opacity:.04}#cookiescript_injected .mdc-switch.mdc-switch--selected:enabled:focus.mdc-ripple-upgraded--background-focused .mdc-switch__ripple::before,#cookiescript_injected .mdc-switch.mdc-switch--selected:enabled:focus:not(.mdc-ripple-upgraded):focus .mdc-switch__ripple::before,#cookiescript_injected_fsd .mdc-switch.mdc-switch--selected:enabled:focus.mdc-ripple-upgraded--background-focused .mdc-switch__ripple::before,#cookiescript_injected_fsd .mdc-switch.mdc-switch--selected:enabled:focus:not(.mdc-ripple-upgraded):focus .mdc-switch__ripple::before{transition-duration:75ms;opacity:.12}#cookiescript_injected .mdc-switch.mdc-switch--selected:enabled:active:not(.mdc-ripple-upgraded) .mdc-switch__ripple::after,#cookiescript_injected_fsd .mdc-switch.mdc-switch--selected:enabled:active:not(.mdc-ripple-upgraded) .mdc-switch__ripple::after{transition:opacity 150ms linear}#cookiescript_injected .mdc-switch.mdc-switch--selected:enabled:active:not(.mdc-ripple-upgraded):active .mdc-switch__ripple::after,#cookiescript_injected_fsd .mdc-switch.mdc-switch--selected:enabled:active:not(.mdc-ripple-upgraded):active .mdc-switch__ripple::after{transition-duration:75ms;opacity:.1}#cookiescript_injected .mdc-switch.mdc-switch--unselected:enabled:hover:not(:focus).mdc-ripple-surface--hover .mdc-switch__ripple::before,#cookiescript_injected .mdc-switch.mdc-switch--unselected:enabled:hover:not(:focus):hover .mdc-switch__ripple::before,#cookiescript_injected_fsd .mdc-switch.mdc-switch--unselected:enabled:hover:not(:focus).mdc-ripple-surface--hover .mdc-switch__ripple::before,#cookiescript_injected_fsd .mdc-switch.mdc-switch--unselected:enabled:hover:not(:focus):hover .mdc-switch__ripple::before{opacity:.04}#cookiescript_injected .mdc-switch.mdc-switch--unselected:enabled:focus.mdc-ripple-upgraded--background-focused .mdc-switch__ripple::before,#cookiescript_injected .mdc-switch.mdc-switch--unselected:enabled:focus:not(.mdc-ripple-upgraded):focus .mdc-switch__ripple::before,#cookiescript_injected_fsd .mdc-switch.mdc-switch--unselected:enabled:focus.mdc-ripple-upgraded--background-focused .mdc-switch__ripple::before,#cookiescript_injected_fsd .mdc-switch.mdc-switch--unselected:enabled:focus:not(.mdc-ripple-upgraded):focus .mdc-switch__ripple::before{transition-duration:75ms;opacity:.12}#cookiescript_injected .mdc-switch.mdc-switch--unselected:enabled:active:not(.mdc-ripple-upgraded) .mdc-switch__ripple::after,#cookiescript_injected_fsd .mdc-switch.mdc-switch--unselected:enabled:active:not(.mdc-ripple-upgraded) .mdc-switch__ripple::after{transition:opacity 150ms linear}#cookiescript_injected .mdc-switch.mdc-switch--unselected:enabled:active:not(.mdc-ripple-upgraded):active .mdc-switch__ripple::after,#cookiescript_injected_fsd .mdc-switch.mdc-switch--unselected:enabled:active:not(.mdc-ripple-upgraded):active .mdc-switch__ripple::after{transition-duration:75ms;opacity:.1}#cookiescript_injected .mdc-switch .mdc-switch__ripple,#cookiescript_injected_fsd .mdc-switch .mdc-switch__ripple{height:48px;width:48px}#cookiescript_injected .mdc-switch .mdc-switch__track,#cookiescript_injected_fsd .mdc-switch .mdc-switch__track{height:14px}#cookiescript_injected .mdc-switch:disabled .mdc-switch__track,#cookiescript_injected_fsd .mdc-switch:disabled .mdc-switch__track{opacity:.12}#cookiescript_injected .mdc-switch:enabled .mdc-switch__track::after{background:;opacity:0.3}#cookiescript_injected .mdc-switch:enabled:hover:not(:focus):not(:active) .mdc-switch__track::after{background:;opacity:0.3}#cookiescript_injected .mdc-switch:enabled:focus:not(:active) .mdc-switch__track::after{background:;opacity:0.3}#cookiescript_injected .mdc-switch:enabled:active .mdc-switch__track::after{background:;opacity:0.3}#cookiescript_injected .mdc-switch:disabled .mdc-switch__track::after,#cookiescript_injected_fsd .mdc-switch:disabled .mdc-switch__track::after{background:#424242}#cookiescript_injected .mdc-switch:enabled .mdc-switch__track::before,#cookiescript_injected_fsd .mdc-switch:enabled .mdc-switch__track::before{background:#e0e0e0}#cookiescript_injected .mdc-switch:enabled:hover:not(:focus):not(:active) .mdc-switch__track::before,#cookiescript_injected_fsd .mdc-switch:enabled:hover:not(:focus):not(:active) .mdc-switch__track::before{background:#e0e0e0}#cookiescript_injected .mdc-switch:enabled:focus:not(:active) .mdc-switch__track::before,#cookiescript_injected_fsd .mdc-switch:enabled:focus:not(:active) .mdc-switch__track::before{background:#e0e0e0}#cookiescript_injected .mdc-switch:enabled:active .mdc-switch__track::before,#cookiescript_injected_fsd .mdc-switch:enabled:active .mdc-switch__track::before{background:#e0e0e0}#cookiescript_injected .mdc-switch:disabled .mdc-switch__track::before,#cookiescript_injected_fsd .mdc-switch:disabled .mdc-switch__track::before{background:#424242}#cookiescript_injected .mdc-switch .mdc-switch__track,#cookiescript_injected_fsd .mdc-switch .mdc-switch__track{border-radius:7px}@media screen and (forced-colors:active),(-ms-high-contrast:active){#cookiescript_injected .mdc-switch:disabled .mdc-switch__handle::after,#cookiescript_injected_fsd .mdc-switch:disabled .mdc-switch__handle::after{opacity:1}#cookiescript_injected .mdc-switch.mdc-switch--selected:disabled .mdc-switch__icons,#cookiescript_injected_fsd .mdc-switch.mdc-switch--selected:disabled .mdc-switch__icons{opacity:1}#cookiescript_injected .mdc-switch.mdc-switch--unselected:disabled .mdc-switch__icons,#cookiescript_injected_fsd .mdc-switch.mdc-switch--unselected:disabled .mdc-switch__icons{opacity:1}#cookiescript_injected .mdc-switch:disabled .mdc-switch__track,#cookiescript_injected_fsd .mdc-switch:disabled .mdc-switch__track{opacity:1}}
+/*End Toggle*/
+
+#cookiescript_injected {
+bottom: 20px;
+right: 20px;
+    position: fixed;
+    padding: 15px 20px 15px 20px;
+    width: 300px;
+    text-align: left;
+    max-height: 85%;
+    overflow-y: auto;
+    max-width: calc(100% - 40px);
+}
+#cookiescript_copyright {
+    line-height: 1;
+    text-align: center;
+}
+#cookiescript_buttons {
+    justify-content: space-between;
+    margin: 0 -5px 0 -5px;
+    flex-wrap: wrap;
+}
+#cookiescript_manage_wrap {
+    margin: 0 0 5px 0;
+}
+#cookiescript_header {
+    padding: 10px 0 10px;
+    text-align: left;
+    margin: 0;
+    margin-right: 13px;
+}
+#cookiescript_checkboxs {
+    margin: 0 0 18px -11px;
+}
+.cookiescript_checkbox {
+    margin: 0 0 -10px 0;
+}
+#cookiescript_accept,
+#cookiescript_save,
+#cookiescript_reject {
+    flex-grow: 1;
+    padding: 0 7px;
+    margin: 0 5px 13px 5px;
+}
+#cookiescript_description {
+    margin: 0 0 10px;
+}
+
+.cookiescript_checkbox_label{
+    padding: 0;
+    margin: 0 10px 0 0;
+}
+
+#cookiescript_injected{
+    transition: width 200ms 600ms;
+}
+
+#cookiescript_injected.hascookiereport{
+    width:600px;
+    transition: width 200ms 0ms;
+}
+#cookiescript_cookietablewrap {
+    transition: height 300ms 200ms, min-height 300ms 200ms, max-height 300ms 200ms, opacity 200ms 300ms;
+}
+#cookiescript_cookietablewrap.cookiescript_hidden {
+    transition: height 300ms 200ms, min-height 300ms 200ms, max-height 300ms 200ms, opacity 200ms 0ms;
+}
+
+
+
+@media only screen and (max-width: 414px) {
+    #cookiescript_injected{
+    bottom: 0;
+    right: 0;
+        width: 100%;
+        padding: 15px;
+        border-radius:0;
+		max-width: 100%;
+    }
+    #cookiescript_description,
+    #cookiescript_buttons,
+    #cookiescript_manage_wrap,
+    #cookiescript_checkboxs
+    {
+        margin-bottom: 8px;
+    }
+    #cookiescript_header{
+        padding-top:5px;
+    }
+    #cookiescript_checkboxs {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    #cookiescript_injected {
+		max-height: 100%;
+	}
+}
+
+
+    </style>
+  <div id="cookiescript_injected_wrapper" tabindex="0" role="alert" aria-live="assertive" data-cs-id="cookiescript_injected">
+	<div id="cookiescript_injected" tabindex="0" role="alert" aria-live="assertive" data-nosnippet="" class="" style="">
+		<div class="cookiescript_pre_header">
+              <div id="cookiescript_close" tabindex="0" role="button" aria-label="Close">×</div>
+    </div>
+      <div id="cookiescript_header" data-cs-i18n-text="{&quot;en&quot;:&quot;This website uses cookies&quot;}">
+    This website uses cookies  </div>
+  <div id="cookiescript_description">
+	    <span data-cs-desc-box="true" data-cs-i18n-text="{&quot;en&quot;:&quot;This website uses cookies to improve user experience. By using our website you consent to all cookies in accordance with our Cookie Policy.&quot;}" data-cs-i18n-read="This website uses cookies to improve user experience. By using our website you consent to all cookies in accordance with our Cookie Policy.">
+      This website uses cookies to improve user experience. By using our website you consent to all cookies in accordance with our Cookie Policy.    </span>
+
+    
+      
+      <a id="cookiescript_readmore" data-cs-i18n-text="{&quot;en&quot;:&quot;Read more&quot;}" data-cs-i18n-url="{&quot;en&quot;:&quot;https:\/\/sparx-learning.com\/privacy-policy\/&quot;}" href="https://sparx-learning.com/privacy-policy/" target="_blank" aria-label="Read more, opens a new window">
+        Read more      </a>
+
+          </div>
+  <div id="cookiescript_buttons">
+          <div id="cookiescript_save" tabindex="0" role="button" data-cs-i18n-text="{&quot;en&quot;:&quot;Save &amp; Close&quot;}">
+        Save &amp; Close      </div>
+              <div id="cookiescript_accept" tabindex="0" role="button" data-cs-i18n-text="{&quot;en&quot;:&quot;Accept all&quot;}">
+        Accept all      </div>
+              <div id="cookiescript_reject" tabindex="0" role="button" data-cs-i18n-text="{&quot;en&quot;:&quot;Decline all&quot;}">
+        Decline all      </div>
+      </div>
+
+  <div id="cookiescript_manage_wrap" tabindex="0" role="button">
+    <div id="cookiescript_manage">
+      <svg role="none" id="cookiescript_manageicon" viewBox="0 0 9.62 9.57">
+        <g id="cs-manage-btn">
+          <g id="cs-manage-btn-1-2">
+            <path class="cookiescript_gear" d="M9.46,6.06l-1.1-.78c0-.16.06-.31.06-.47a1.27,1.27,0,0,0-.06-.47L9.57,3.4l-1.15-2L7,1.93a2.74,2.74,0,0,0-.83-.47L6,0H3.61L3.35,1.46a7.14,7.14,0,0,0-.79.47L1.15,1.36,0,3.4l1.15.94c0,.16,0,.31,0,.47a1.51,1.51,0,0,0,0,.47l-1,.78A.75.75,0,0,0,0,6.17l1.15,2,1.41-.58a2.49,2.49,0,0,0,.84.47l.21,1.47H6a.53.53,0,0,1,0-.21L6.22,8.1a4,4,0,0,0,.84-.47l1.41.58,1.15-2A.75.75,0,0,0,9.46,6.06Zm-4.65.19A1.47,1.47,0,1,1,6.28,4.78,1.47,1.47,0,0,1,4.81,6.25Z"></path>
+          </g>
+        </g>
+      </svg>
+      <span data-cs-show-title="cookie-script" data-cs-i18n-text="{&quot;en&quot;:&quot;Show details&quot;}">
+        Show details      </span>
+      <span style="display: none" data-cs-hide-title="cookie-script" data-cs-i18n-text="{&quot;en&quot;:&quot;Hide details&quot;}">
+        Hide details      </span>
+    </div>
+  </div>
+		<div class="cookiescript_hidden" id="cookiescript_cookietablewrap">
+			  <div id="cookiescript_checkboxs">
+          
+            <div class="cookiescript_checkbox">
+        <div class="mdc-checkbox">
+          <input tabindex="0" id="cookiescript_category_strict" data-cookiescript="checkbox-input" type="checkbox" class="mdc-checkbox__native-control cookiescript_checkbox_input" value="strict" disabled="" checked="">
+          <div class="mdc-checkbox__background">
+            <svg role="none" class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+              <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+            </svg>
+          </div>
+        </div>
+        <label class="cookiescript_checkbox_label" for="cookiescript_category_strict">
+          <span class="cookiescript_checkbox_text" data-cs-i18n-text="{&quot;en&quot;:&quot;Strictly necessary&quot;}">
+            Strictly necessary          </span>
+        </label>
+      </div>
+
+          
+            <div class="cookiescript_checkbox">
+        <div class="mdc-checkbox">
+          <input tabindex="0" id="cookiescript_category_performance" data-cookiescript="checkbox-input" type="checkbox" class="mdc-checkbox__native-control cookiescript_checkbox_input" value="performance">
+          <div class="mdc-checkbox__background">
+            <svg role="none" class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+              <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+            </svg>
+          </div>
+        </div>
+        <label class="cookiescript_checkbox_label" for="cookiescript_category_performance">
+          <span class="cookiescript_checkbox_text" data-cs-i18n-text="{&quot;en&quot;:&quot;Performance&quot;}">
+            Performance          </span>
+        </label>
+      </div>
+
+          
+            <div class="cookiescript_checkbox">
+        <div class="mdc-checkbox">
+          <input tabindex="0" id="cookiescript_category_targeting" data-cookiescript="checkbox-input" type="checkbox" class="mdc-checkbox__native-control cookiescript_checkbox_input" value="targeting">
+          <div class="mdc-checkbox__background">
+            <svg role="none" class="mdc-checkbox__checkmark" viewBox="0 0 24 24">
+              <path class="mdc-checkbox__checkmark-path" fill="none" d="M1.73,12.91 8.1,19.28 22.79,4.59"></path>
+            </svg>
+          </div>
+        </div>
+        <label class="cookiescript_checkbox_label" for="cookiescript_category_targeting">
+          <span class="cookiescript_checkbox_text" data-cs-i18n-text="{&quot;en&quot;:&quot;Targeting&quot;}">
+            Targeting          </span>
+        </label>
+      </div>
+
+                  </div>
+
+    <div id="cookiescript_maintabs" data-cs-maintabs="cookiescript">
+      <div tabindex="0" role="button" id="cookiescript_declaration" class="cookiescript_active" data-cs-maintab="declaration" data-cs-i18n-text="{&quot;en&quot;:&quot;Cookie declaration&quot;}">
+        Cookie declaration      </div>
+      <div tabindex="0" role="button" id="cookiescript_aboutcookies" data-cs-maintab="aboutcookies" data-cs-i18n-text="{&quot;en&quot;:&quot;About cookies&quot;}">
+        About cookies      </div>
+          </div>
+    <div id="cookiescript_tabscontent">
+      <div id="cookiescript_declarationwrap" data-cs-maintab-content="declaration">
+        <div id="cookiescript_categories" data-cs-tabs="cookiescript">
+                      <div tabindex="0" role="button" class="cookiescript_category_strict  cookiescript_active" data-cs-tab="strict" data-cs-i18n-text="{&quot;en&quot;:&quot;Strictly necessary&quot;}">
+              Strictly necessary            </div>
+                      <div tabindex="0" role="button" class="cookiescript_category_performance  " data-cs-tab="performance" data-cs-i18n-text="{&quot;en&quot;:&quot;Performance&quot;}">
+              Performance            </div>
+                      <div tabindex="0" role="button" class="cookiescript_category_targeting  " data-cs-tab="targeting" data-cs-i18n-text="{&quot;en&quot;:&quot;Targeting&quot;}">
+              Targeting            </div>
+                  </div>
+        <div id="cookiescript_reportwrap" tabindex="0">
+                                  <div class="cookiescript_report_strict " data-cs-tab-content="strict">
+              <div class="cookiescript_category_description" data-cs-i18n-text="{&quot;en&quot;:&quot;Strictly necessary cookies allow core website functionality such as user login and account management. The website cannot be used properly without strictly necessary cookies.&quot;}">
+                Strictly necessary cookies allow core website functionality such as user login and account management. The website cannot be used properly without strictly necessary cookies.              </div>
+              <div class="cookiescript_tablewrap">
+                                <table class="cookiescript_fullreport" data-cs-table-report="cookiescript">
+                    <caption style="display: none;">Cookie report</caption>
+                  <thead>
+                  <tr>
+                    <th scope="col" data-cs-i18n-text="{&quot;en&quot;:&quot;Name&quot;}">
+                      Name                    </th>
+                    <th scope="col" data-cs-i18n-text="{&quot;en&quot;:&quot;Provider \/ Domain&quot;}">
+                      Provider / Domain                    </th>
+                    <th scope="col" data-cs-i18n-text="{&quot;en&quot;:&quot;Expiration&quot;}">
+                      Expiration                    </th>
+                    <th scope="col" data-cs-i18n-text="{&quot;en&quot;:&quot;Description&quot;}">
+                      Description                    </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                                      <tr>
+                      <td label="Name" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Name&quot;}">CookieScriptConsent</td>
+                      <td label="Provider / Domain" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Provider \/ Domain&quot;}">
+                                                  <div class="cookiescript_vendor_name">
+                            <a target="_blank" rel="nofollow" href="https://cookie-script.com/privacy-policy.html">CookieScript</a>                          </div>
+                                                sparxmaths.com                      </td>
+                      <td data-cs-i18n-text="{&quot;en&quot;:&quot;3 months&quot;}" label="Expiration" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Expiration&quot;}">
+                        3 months                      </td>
+                      <td data-cs-i18n-text="{&quot;en&quot;:&quot;This cookie is used by Cookie-Script.com service to remember visitor cookie consent preferences. It is necessary for Cookie-Script.com cookie banner to work properly.&quot;}" label="Description" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Description&quot;}">
+                        This cookie is used by Cookie-Script.com service to remember visitor cookie consent preferences. It is necessary for Cookie-Script.com cookie banner to work properly.                      </td>
+                    </tr>
+                                      <tr>
+                      <td label="Name" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Name&quot;}">VISITOR_PRIVACY_METADATA</td>
+                      <td label="Provider / Domain" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Provider \/ Domain&quot;}">
+                                                  <div class="cookiescript_vendor_name">
+                            <a target="_blank" rel="nofollow" href="https://policies.google.com/privacy">YouTube</a>                          </div>
+                                                .youtube.com                      </td>
+                      <td data-cs-i18n-text="{&quot;en&quot;:&quot;6 months&quot;}" label="Expiration" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Expiration&quot;}">
+                        6 months                      </td>
+                      <td data-cs-i18n-text="{&quot;en&quot;:&quot;This cookie is used to store the user's consent and privacy choices for their interaction with the site. It records data on the visitor's consent regarding various privacy policies and settings, ensuring that their preferences are honored in future sessions.&quot;}" label="Description" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Description&quot;}">
+                        This cookie is used to store the user's consent and privacy choices for their interaction with the site. It records data on the visitor's consent regarding various privacy policies and settings, ensuring that their preferences are honored in future sessions.                      </td>
+                    </tr>
+                                    </tbody>
+                </table>
+                
+                
+              </div>
+            </div>
+                                  <div class="cookiescript_report_performance cookiescript_hidden" data-cs-tab-content="performance">
+              <div class="cookiescript_category_description" data-cs-i18n-text="{&quot;en&quot;:&quot;Performance cookies are used to see how visitors use the website, eg. analytics cookies. Those cookies cannot be used to directly identify a certain visitor.&quot;}">
+                Performance cookies are used to see how visitors use the website, eg. analytics cookies. Those cookies cannot be used to directly identify a certain visitor.              </div>
+              <div class="cookiescript_tablewrap">
+                                <table class="cookiescript_fullreport" data-cs-table-report="cookiescript">
+                    <caption style="display: none;">Cookie report</caption>
+                  <thead>
+                  <tr>
+                    <th scope="col" data-cs-i18n-text="{&quot;en&quot;:&quot;Name&quot;}">
+                      Name                    </th>
+                    <th scope="col" data-cs-i18n-text="{&quot;en&quot;:&quot;Provider \/ Domain&quot;}">
+                      Provider / Domain                    </th>
+                    <th scope="col" data-cs-i18n-text="{&quot;en&quot;:&quot;Expiration&quot;}">
+                      Expiration                    </th>
+                    <th scope="col" data-cs-i18n-text="{&quot;en&quot;:&quot;Description&quot;}">
+                      Description                    </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                                      <tr>
+                      <td label="Name" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Name&quot;}">_ga_SJNCKNW32W</td>
+                      <td label="Provider / Domain" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Provider \/ Domain&quot;}">
+                                                .sparxmaths.com                      </td>
+                      <td data-cs-i18n-text="{&quot;en&quot;:&quot;1 year 1 month&quot;}" label="Expiration" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Expiration&quot;}">
+                        1 year 1 month                      </td>
+                      <td data-cs-i18n-text="{&quot;en&quot;:&quot;&quot;}" label="Description" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Description&quot;}">
+                                              </td>
+                    </tr>
+                                      <tr>
+                      <td label="Name" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Name&quot;}">_ga</td>
+                      <td label="Provider / Domain" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Provider \/ Domain&quot;}">
+                                                  <div class="cookiescript_vendor_name">
+                            <a target="_blank" rel="nofollow" href="https://policies.google.com/privacy">Google LLC</a>                          </div>
+                                                .sparxmaths.com                      </td>
+                      <td data-cs-i18n-text="{&quot;en&quot;:&quot;1 year 1 month&quot;}" label="Expiration" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Expiration&quot;}">
+                        1 year 1 month                      </td>
+                      <td data-cs-i18n-text="{&quot;en&quot;:&quot;This cookie name is associated with Google Universal Analytics - which is a significant update to Google's more commonly used analytics service. This cookie is used to distinguish unique users by assigning a randomly generated number as a client identifier. It is included in each page request in a site and used to calculate visitor, session and campaign data for the sites analytics reports. &quot;}" label="Description" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Description&quot;}">
+                        This cookie name is associated with Google Universal Analytics - which is a significant update to Google's more commonly used analytics service. This cookie is used to distinguish unique users by assigning a randomly generated number as a client identifier. It is included in each page request in a site and used to calculate visitor, session and campaign data for the sites analytics reports.                       </td>
+                    </tr>
+                                    </tbody>
+                </table>
+                
+                
+              </div>
+            </div>
+                                  <div class="cookiescript_report_targeting cookiescript_hidden" data-cs-tab-content="targeting">
+              <div class="cookiescript_category_description" data-cs-i18n-text="{&quot;en&quot;:&quot;Targeting cookies are used to identify visitors between different websites, eg. content partners, banner networks. Those cookies may be used by companies to build a profile of visitor interests or show relevant ads on other websites.&quot;}">
+                Targeting cookies are used to identify visitors between different websites, eg. content partners, banner networks. Those cookies may be used by companies to build a profile of visitor interests or show relevant ads on other websites.              </div>
+              <div class="cookiescript_tablewrap">
+                                <table class="cookiescript_fullreport" data-cs-table-report="cookiescript">
+                    <caption style="display: none;">Cookie report</caption>
+                  <thead>
+                  <tr>
+                    <th scope="col" data-cs-i18n-text="{&quot;en&quot;:&quot;Name&quot;}">
+                      Name                    </th>
+                    <th scope="col" data-cs-i18n-text="{&quot;en&quot;:&quot;Provider \/ Domain&quot;}">
+                      Provider / Domain                    </th>
+                    <th scope="col" data-cs-i18n-text="{&quot;en&quot;:&quot;Expiration&quot;}">
+                      Expiration                    </th>
+                    <th scope="col" data-cs-i18n-text="{&quot;en&quot;:&quot;Description&quot;}">
+                      Description                    </th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                                      <tr>
+                      <td label="Name" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Name&quot;}">NID</td>
+                      <td label="Provider / Domain" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Provider \/ Domain&quot;}">
+                                                  <div class="cookiescript_vendor_name">
+                            <a target="_blank" rel="nofollow" href="https://policies.google.com/privacy">Google LLC</a>                          </div>
+                                                .google.com                      </td>
+                      <td data-cs-i18n-text="{&quot;en&quot;:&quot;6 months 3 days&quot;}" label="Expiration" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Expiration&quot;}">
+                        6 months 3 days                      </td>
+                      <td data-cs-i18n-text="{&quot;en&quot;:&quot;This cookie is set by DoubleClick (which is owned by Google) to help build a profile of your interests and show you relevant ads on other sites.&quot;}" label="Description" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Description&quot;}">
+                        This cookie is set by DoubleClick (which is owned by Google) to help build a profile of your interests and show you relevant ads on other sites.                      </td>
+                    </tr>
+                                      <tr>
+                      <td label="Name" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Name&quot;}">YSC</td>
+                      <td label="Provider / Domain" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Provider \/ Domain&quot;}">
+                                                  <div class="cookiescript_vendor_name">
+                            <a target="_blank" rel="nofollow" href="https://policies.google.com/privacy">Google LLC</a>                          </div>
+                                                .youtube.com                      </td>
+                      <td data-cs-i18n-text="{&quot;en&quot;:&quot;Session&quot;}" label="Expiration" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Expiration&quot;}">
+                        Session                      </td>
+                      <td data-cs-i18n-text="{&quot;en&quot;:&quot;This cookie is set by YouTube to track views of embedded videos.&quot;}" label="Description" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Description&quot;}">
+                        This cookie is set by YouTube to track views of embedded videos.                      </td>
+                    </tr>
+                                      <tr>
+                      <td label="Name" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Name&quot;}">VISITOR_INFO1_LIVE</td>
+                      <td label="Provider / Domain" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Provider \/ Domain&quot;}">
+                                                  <div class="cookiescript_vendor_name">
+                            <a target="_blank" rel="nofollow" href="https://policies.google.com/privacy">Google LLC</a>                          </div>
+                                                .youtube.com                      </td>
+                      <td data-cs-i18n-text="{&quot;en&quot;:&quot;6 months&quot;}" label="Expiration" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Expiration&quot;}">
+                        6 months                      </td>
+                      <td data-cs-i18n-text="{&quot;en&quot;:&quot;This cookie is set by Youtube to keep track of user preferences for Youtube videos embedded in sites;it can also determine whether the website visitor is using the new or old version of the Youtube interface.&quot;}" label="Description" data-cs-i18n-table-label="{&quot;en&quot;:&quot;Description&quot;}">
+                        This cookie is set by Youtube to keep track of user preferences for Youtube videos embedded in sites;it can also determine whether the website visitor is using the new or old version of the Youtube interface.                      </td>
+                    </tr>
+                                    </tbody>
+                </table>
+                
+                
+              </div>
+            </div>
+                  </div>
+      </div>
+      <div id="cookiescript_aboutwrap" class="cookiescript_hidden" data-cs-maintab-content="aboutcookies">
+        <span data-cs-i18n-text="{&quot;en&quot;:&quot;Cookies are small text files that are placed on your computer by websites that you visit. Websites use cookies to help users navigate efficiently and perform certain functions. Cookies that are required for the website to operate properly are allowed to be set without your permission. All other cookies need to be approved before they can be set in the browser. <br \/>\r\n<br \/>\r\nYou can change your consent to cookie usage at any time on our Privacy Policy page.&quot;}">
+          Cookies are small text files that are placed on your computer by websites that you visit. Websites use cookies to help users navigate efficiently and perform certain functions. Cookies that are required for the website to operate properly are allowed to be set without your permission. All other cookies need to be approved before they can be set in the browser. <br>
+<br>
+You can change your consent to cookie usage at any time on our Privacy Policy page.        </span>
+		        <div style="display: none;" data-cs-consent-key-box="cookie-script">
+          <span data-cs-i18n-text="{&quot;en&quot;:&quot;Cookies consent ID&quot;}">
+            Cookies consent ID          </span>:
+          <span data-cs-consent-key="cookie-script"></span>
+        </div>
+      </div>
+          </div>
+	<div id="cookiescript_reportdate" role="contentinfo">Cookie <a id="cookiescript_reportlink" href="https://cookie-script.com/cookie-report?identifier=1ca9e2f6153b9978dc8119d0ae9c8353" target="_blank" aria-label="report, opens a new window">report</a> created by <a href="https://cookie-script.com" id="cookiescript_cookiescriptlink" title="CookieScript Consent Management Platform" target="_blank" aria-label="CookieScript Consent Management Platform, opens a new window">CookieScript</a></div>
+		</div>
+		
+	</div>
+</div>
+</body></html>
